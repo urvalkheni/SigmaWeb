@@ -1,0 +1,1 @@
+alert("Basic heading and Links Page")
