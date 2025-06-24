@@ -1,0 +1,101 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Build output
+dist/
+build/
+out/
+coverage/
+.temp/
+.temp_build/
+.next/
+.nuxt/
+.svelte-kit/
+.sapper/
+.vite/
+.hugo_build/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+bower_components/
+
+# Optional npm cache directory
+.npm/
+
+# Parcel cache
+.cache/
+
+# Storybook
+.storybook-out/
+out-storybook/
+
+# Sass / SCSS cache
+.sass-cache/
+
+# eslint cache
+.eslintcache
+
+# Stylelint cache
+.stylelintcache
+
+# Test output
+test-output/
+junit.xml
+karma-*.xml
+
+# Misc
+*.tgz
+*.zip
+*.gz
+
+# GitHub Codespaces
+.devcontainer/
+
+# Firebase
+.firebase/
+.firebaserc
+
+# Netlify
+.netlify/
+
+# Vercel
+.vercel/
+
+# Local serverless deployments
+.serverless/
+
+# Docker
+docker-compose.override.yml
+*.local
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
