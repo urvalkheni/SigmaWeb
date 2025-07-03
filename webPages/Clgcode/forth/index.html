@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Example</title>
+    <style>
+        h1 {
+            text-align: center;
+            color: pink;
+            background: purple;
+            padding: 15px;
+        }
+        section {
+            display: flex;
+            flex-flow: column;
+            background: lightblue;
+            justify-content: center;
+            overflow: auto;
+            align-items: center;
+            padding-bottom: 30px;
+        }
+        article {
+            color: darkred;
+            padding: 10px;
+            margin: 10px;
+            background: aqua;
+            border: 2px solid darkblue;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sample Flexbox Example</h1>
+    </header>
+    <section>
+        <article>
+            <h2>First Article</h2>
+            <p>This is the content of the first article. It introduces the layout.</p>
+            <p>Flexbox helps in aligning and distributing space among items.</p>
+        </article>
+        <article>
+            <h2>Second Article</h2>
+            <p>This article discusses how Flexbox improves responsiveness.</p>
+            <p>It automatically adjusts elements on different screen sizes.</p>
+        </article>
+        <article>
+            <h2>Third Article</h2>
+            <p>Flexbox uses properties like <code>justify-content</code> and <code>align-items</code>.</p>
+            <p>This makes positioning elements more efficient than floats.</p>
+        </article>
+        <article>
+            <h2>Fourth Article</h2>
+            <p>It’s important to understand the difference between row and column directions.</p>
+            <p>You can change direction using <code>flex-direction</code>.</p>
+        </article>
+        <article>
+            <h2>Fifth Article</h2>
+            <p>Each article is styled consistently using CSS classes or selectors.</p>
+            <p>This ensures visual uniformity across all components.</p>
+        </article>
+        <article>
+            <h2>Sixth Article</h2>
+            <p>Flexbox layouts are one-dimensional, unlike CSS Grid which is two-dimensional.</p>
+            <p>Choose the layout method based on your content structure.</p>
+        </article>
+        <article>
+            <h2>Seventh Article</h2>
+            <p>You can use <code>flex-grow</code> to let items expand and fill available space.</p>
+            <p>It's helpful in creating flexible and responsive containers.</p>
+        </article>
+        <article>
+            <h2>Eighth Article</h2>
+            <p>The <code>align-self</code> property allows individual item alignment.</p>
+            <p>This gives finer control over specific elements in a flex container.</p>
+        </article>
+        <article>
+            <h2>Ninth Article</h2>
+            <p>Flexbox fallback should be considered for older browsers.</p>
+            <p>Use feature queries or graceful degradation techniques.</p>
+        </article>
+        <article>
+            <h2>Tenth Article</h2>
+            <p>Combining Flexbox with media queries creates highly adaptable layouts.</p>
+            <p>Responsive design becomes seamless with this powerful combo.</p>
+        </article>
+    </section>
+</body>
+</html>
