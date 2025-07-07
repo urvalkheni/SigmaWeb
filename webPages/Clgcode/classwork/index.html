@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Propeties</title>
+    <style>
+        h1{
+            background-color:  rgb(233 171 88);
+            text-align: center;
+        }
+        h3{
+            background-color:  rgb(233 171 88);
+            text-align: center;
+        }
+        div{
+            border: 2px solid rgb(233 171 88);
+            border-radius: 5px;
+        }
+        body{    
+            background-size: cover;
+            padding: 20px;
+        }
+        #Conatiner{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 10px;
+            grid-auto-rows: minmax(200px,auto);
+        }
+        #Conatiner div{
+            background-color: rgba(59,34,1,0.5);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Grid Properties</h1>
+    <hr color="rgb(233 171 88)">
+    <h3>Grid Layout Example</h3>
+    <hr color="rgb(233 171 88)">    
+    <div id="Conatiner">
+    <div>Left Content</div>
+    <div>Main Content</div>
+    <div>Right Content</div>
+    <div>Left Content</div>
+    <div>Main Content</div>
+    <div>Right Content</div>    
+    </div>
+</body>
+</html>
