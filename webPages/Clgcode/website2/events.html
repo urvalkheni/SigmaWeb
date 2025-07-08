@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - CHARUSAT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <img src="CHARUSAT_RGTD_LOGO.jpg" alt="CHARUSAT Logo" class="logo">
+        <nav class="main-nav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="profile.html">Profile</a>
+            <a href="events.html" class="active">Events</a>
+            <a href="results.html">Results</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+    </header>
+    <a href="dashboard.html" class="btn-orange" style="margin: 1em; display: inline-block;">Back to Dashboard</a>
+    <main class="about-content">
+        <h1>Upcoming Events</h1>
+        <ul class="about-list">
+            <li>TechFest 2025 - 10th March 2025</li>
+            <li>Annual Sports Meet - 25th March 2025</li>
+            <li>Convocation Ceremony - 15th April 2025</li>
+            <li>Workshop on AI & ML - 5th May 2025</li>
+        </ul>
+    </main>
+    <script>
+    if (!localStorage.getItem('userType')) {
+        window.location.href = 'login.html';
+    }
+    document.getElementById('logoutBtn').onclick = function() {
+        localStorage.removeItem('userType');
+        window.location.href = 'login.html';
+    };
+    </script>
+</body>
+</html>

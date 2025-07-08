@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CHARUSAT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <img src="CHARUSAT_RGTD_LOGO.jpg" alt="CHARUSAT Logo" class="logo">
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="login.html" class="active">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    <main class="about-content">
+        <h1>Login</h1>
+        <form class="login-form" id="loginForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" class="btn-orange" style="width:100%;margin-top:1em;">Login</button>
+        </form>
+    </main>
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var username = document.getElementById('username').value.trim();
+        var password = document.getElementById('password').value.trim();
+        if(username === 'admin' && password === 'admin123') {
+            window.location.href = 'admin.html';
+        } else if(username === 'student' && password === 'student123') {
+            window.location.href = 'profile.html';
+        } else {
+            alert('Invalid username or password!\nTry admin/admin123 or student/student123');
+        }
+    });
+    </script>
+</body>
+</html>
