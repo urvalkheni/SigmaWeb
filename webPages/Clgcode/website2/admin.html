@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - CHARUSAT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <img src="CHARUSAT_RGTD_LOGO.jpg" alt="CHARUSAT Logo" class="logo">
+        <nav class="main-nav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="profile.html">Profile</a>
+            <a href="events.html">Events</a>
+            <a href="results.html">Results</a>
+            <a href="admin.html" class="active">Admin</a>
+        </nav>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+    </header>
+    <a href="dashboard.html" class="btn-orange" style="margin: 1em; display: inline-block;">Back to Dashboard</a>
+    <main class="about-content">
+        <h1>Admin Panel</h1>
+        <div style="color:#e94d0a;font-size:1.3em;font-weight:bold;margin:2em 0;">Admin Only: Restricted Access</div>
+        <p>Welcome, Admin! Here you can manage users, events, and results.</p>
+    </main>
+    <script>
+    if (localStorage.getItem('userType') !== 'admin') {
+        window.location.href = 'login.html';
+    }
+    document.getElementById('logoutBtn').onclick = function() {
+        localStorage.removeItem('userType');
+        window.location.href = 'login.html';
+    };
+    </script>
+</body>
+</html>
