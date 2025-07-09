@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1: CSS Flexbox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --primary: #4e73df;
+      --shadow: rgba(0, 0, 0, 0.12);
+      --hover-shadow: rgba(0, 0, 0, 0.25);
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: var(--primary);
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px var(--shadow);
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .flex-item {
+      width: 200px;
+      height: 200px;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 10px var(--shadow);
+      transition: transform 0.3s ease;
+      animation: fadeIn 1s ease both;
+    }
+
+    .flex-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .flex-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .flex-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 18px var(--hover-shadow);
+    }
+
+    .label {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      .flex-item {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Task 1: CSS Flexbox</h1>
+
+  <div class="flex-container">
+    <div class="flex-item">
+      <img src="hulk.jpeg" alt="Hulk">
+      <div class="label">Hulk</div>
+    </div>
+    <div class="flex-item">
+      <img src="ironman.jpeg" alt="Iron Man">
+      <div class="label">Iron Man</div>
+    </div>
+    <div class="flex-item">
+      <img src="Thor.jpeg" alt="Thor">
+      <div class="label">Thor</div>
+    </div>
+    <div class="flex-item">
+      <img src="captain.jpeg" alt="Captain America">
+      <div class="label">Captain</div>
+    </div>
+    <div class="flex-item">
+      <img src="spiderman.jpeg" alt="Spiderman">
+      <div class="label">Spiderman</div>
+    </div>
+  </div>
+
+</body>
+</html>
