@@ -1,0 +1,279 @@
+/* ===== CHARUSAT About Us Section Styling (Blue, White, Orange) ===== */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f7fa;
+  color: #1a237e;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(90deg, #1565c0 0%, #1976d2 100%);
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px 40px 20px;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  position: relative;
+}
+.hero-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+.hero-title {
+  font-size: 2.5rem;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.hero-tagline {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+/* Orange accent underline for hero */
+.hero-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff9800;
+  margin: 16px auto 0 auto;
+  border-radius: 2px;
+}
+
+/* About Section */
+.about-section {
+  background: #fff;
+  margin-top: -30px;
+  border-radius: 20px;
+  box-shadow: 0 2px 16px rgba(21,101,192,0.08);
+  padding: 40px 0 30px 0;
+}
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+.about-left, .about-right {
+  flex: 1 1 300px;
+  min-width: 260px;
+}
+.about-left h2 {
+  color: #1565c0;
+  font-size: 2rem;
+  margin-bottom: 12px;
+  border-left: 6px solid #ff9800;
+  padding-left: 12px;
+}
+.about-right h3 {
+  color: #1976d2;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+/* Mission & Vision Section */
+.mission-vision-section {
+  background: #f4f7fa;
+  padding: 40px 0 30px 0;
+}
+.mv-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+.mv-block {
+  flex: 1 1 300px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(21,101,192,0.06);
+  padding: 30px 24px;
+  min-width: 260px;
+  border-top: 4px solid #ff9800;
+}
+.mv-block h2 {
+  color: #1565c0;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+/* Leadership Section */
+.leadership-section {
+  background: #fff;
+  padding: 40px 0 30px 0;
+  margin-top: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 16px rgba(21,101,192,0.08);
+}
+.section-title {
+  text-align: center;
+  color: #1565c0;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #ff9800;
+  margin: 12px auto 0 auto;
+  border-radius: 2px;
+}
+.leadership-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+.leader-card {
+  background: #f4f7fa;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(21,101,192,0.04);
+  padding: 24px 18px;
+  text-align: center;
+  width: 200px;
+  border-bottom: 4px solid #ff9800;
+}
+.leader-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 12px auto;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #1976d2;
+}
+.placeholder-photo::after {
+  content: '\1F464';
+  font-size: 2.5rem;
+  color: #90caf9;
+}
+.leader-card h3 {
+  margin: 10px 0 4px 0;
+  color: #1565c0;
+  font-size: 1.1rem;
+}
+.leader-card p {
+  margin: 0;
+  color: #1976d2;
+  font-size: 0.98rem;
+}
+
+/* Journey Section */
+.journey-section {
+  background: #f4f7fa;
+  padding: 40px 0 30px 0;
+  margin-top: 20px;
+}
+.journey-section .section-title {
+  color: #1565c0;
+}
+.journey-section p {
+  font-size: 1.08rem;
+  color: #1a237e;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Footer */
+.footer-section {
+  background: #1565c0;
+  color: #fff;
+  padding: 28px 0 18px 0;
+  border-radius: 20px 20px 0 0;
+  margin-top: 40px;
+  text-align: center;
+  position: relative;
+}
+.footer-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.footer-content p {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.footer-section::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: #ff9800;
+  margin: 18px auto 0 auto;
+  border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .about-content, .mv-wrapper, .leadership-grid {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+}
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.3rem;
+  }
+  .about-left h2, .mv-block h2 {
+    font-size: 1.1rem;
+  }
+  .about-section, .mission-vision-section, .leadership-section, .journey-section {
+    padding: 24px 0 18px 0;
+  }
+}
+
+.logo-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(21,101,192,0.07);
+  padding: 10px 0 10px 30px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+}
+.logo-bar .hero-logo {
+  width: 70px;
+  height: 70px;
+  margin: 0;
+  object-fit: contain;
+}
+
+/* Remove margin from .hero-logo in hero-section if present */
+.hero-section .hero-logo {
+  margin-bottom: 0;
+}
+
+/* Add top padding to hero-section to avoid overlap with logo-bar */
+.hero-section {
+  padding-top: 100px;
+}
