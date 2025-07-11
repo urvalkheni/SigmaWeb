@@ -2,104 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Task 2: CSS Grid Layout</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    :root {
-      --bg: #f0f4f8;
-      --primary: #4e73df;
-      --shadow: rgba(0, 0, 0, 0.1);
-      --hover-shadow: rgba(0, 0, 0, 0.2);
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg);
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      color: var(--primary);
-      font-size: 32px;
-      margin-bottom: 40px;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      grid-auto-rows: 250px;
-      gap: 20px;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px var(--shadow);
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .grid-item {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: transform 0.3s ease;
-      animation: slideIn 0.8s ease both;
-    }
-
-    .grid-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .grid-item:hover img {
-      transform: scale(1.08);
-    }
-
-    .grid-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 24px var(--hover-shadow);
-    }
-
-    .label {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      padding: 10px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .grid-item:nth-child(1) {
-      grid-column: span 2;
-    }
-
-    .grid-item:nth-child(4) {
-      grid-row: span 2;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @media (max-width: 768px) {
-      .grid-item:nth-child(1),
-      .grid-item:nth-child(4) {
-        grid-column: auto;
-        grid-row: auto;
-      }
-    }
-  </style>
+  <title>Task 2: Basic CSS Grid</title>
+  <link rel="stylesheet" href="Grid.css">
 </head>
 <body>
 
-  <h1>Task 2: CSS Grid Layout</h1>
+  <h1>Task 2: Basic CSS Grid</h1>
 
   <div class="grid-container">
     <div class="grid-item">
@@ -127,6 +35,5 @@
       <div class="label">Black Widow</div>
     </div>
   </div>
-
 </body>
 </html>
