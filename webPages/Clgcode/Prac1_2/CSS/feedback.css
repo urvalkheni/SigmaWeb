@@ -1,0 +1,96 @@
+/* Feedback Page Specific Styles */
+
+.feedback-header {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.feedback-title {
+  color: var(--blue);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.feedback-subtitle {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.feedback-form-container {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.feedback-textarea {
+  min-height: 120px;
+  resize: vertical;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border-color var(--transition);
+}
+
+.feedback-textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+}
+
+.feedback-button {
+  padding: 0.875rem 2rem;
+  background: var(--blue);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  align-self: flex-start;
+}
+
+.feedback-button:hover {
+  background: var(--light-blue);
+  transform: translateY(-2px);
+}
+
+.feedback-instructions {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--blue);
+  margin-bottom: 2rem;
+}
+
+.feedback-instructions h3 {
+  color: var(--blue);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.feedback-instructions ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: var(--text-dark);
+}
+
+.feedback-instructions li {
+  margin-bottom: 0.5rem;
+}

@@ -1,0 +1,70 @@
+/* Admin Page Specific Styles */
+
+.admin-header {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.admin-title {
+  color: var(--blue);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.admin-subtitle {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.admin-content {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.admin-message {
+  color: var(--text-dark);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.admin-btn {
+  padding: 0.875rem 1.5rem;
+  background: var(--blue);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.admin-btn:hover {
+  background: var(--light-blue);
+  transform: translateY(-2px);
+}
+
+.admin-btn.secondary {
+  background: var(--orange);
+}
+
+.admin-btn.secondary:hover {
+  background: #f57c00;
+}
