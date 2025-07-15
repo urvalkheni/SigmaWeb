@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | Charusat Portal</title>
+  <link rel="stylesheet" href="../CSS/simplified.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo-link">
+        <img src="../CSS/logo.png" alt="Charusat Portal Logo" class="logo">
+      </a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+  <main class="flex align-center justify-center" style="min-height: 70vh;">
+    <div class="card fade-in" style="max-width: 400px; width: 100%;">
+      <h2 class="text-center text-blue mb-3">New User Registration</h2>
+      <form action="dashboard.html" method="get">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
+      </form>
+      <div class="text-center mt-3">
+        <p>Already have an account? <a href="login.html" class="text-blue">Login here</a></p>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Charusat Portal. All rights reserved.</p>
+  </footer>
+</body>
+</html>
