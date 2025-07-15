@@ -1,0 +1,288 @@
+/* ===== Base Styles for Charusat Portal ===== */
+
+:root {
+  /* Colors */
+  --blue: #1565c0;
+  --light-blue: #1976d2;
+  --orange: #ff9800;
+  --white: #fff;
+  --light-bg: #f4f7fa;
+  --text-dark: #222;
+  --text-light: #666;
+  --accent: #0057b8;
+  --nav-bg: #fff;
+  --nav-link: #0057b8;
+  --nav-link-active: #003974;
+  
+  /* Layout */
+  --border-radius: 8px;
+  --container-width: 1100px;
+  --shadow: 0 2px 16px rgba(21,101,192,0.08);
+  --shadow-hover: 0 8px 25px rgba(21,101,192,0.15);
+  
+  /* Transitions */
+  --transition: 0.2s ease;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== BASE STYLES ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background: var(--light-bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== HEADER & NAVIGATION ===== */
+header {
+  background: var(--nav-bg);
+  box-shadow: var(--shadow);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1.2rem 0;
+  gap: 1rem;
+  justify-content: center;
+  position: relative;
+  min-height: 80px;
+}
+
+.logo-link {
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-link:hover {
+  background: none !important;
+  transform: translateY(-50%) !important;
+}
+
+.logo {
+  width: 80px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
+  max-width: 100%;
+  transition: none;
+}
+
+nav a:not(.logo-link) {
+  margin-left: 0.5rem;
+}
+
+nav a {
+  color: var(--nav-link);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition);
+}
+
+nav a:hover, nav a:focus {
+  background: var(--accent);
+  color: var(--white);
+}
+
+/* Remove hover effect specifically for logo link */
+.logo-link:hover, .logo-link:focus {
+  background: none !important;
+  color: inherit !important;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--blue);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-center { text-align: center; }
+.text-blue { color: var(--blue); }
+.text-light { color: var(--text-light); }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mt-3 { margin-top: 1.5rem; }
+.fade-in { opacity: 1; }
+.flex { display: flex; }
+.justify-center { justify-content: center; }
+.align-center { align-items: center; }
+.gap-2 { gap: 1rem; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-column { flex-direction: column; }
+.gap-1 { gap: 0.5rem; }
+.gap-3 { gap: 1.5rem; }
+
+/* ===== FORM ELEMENTS ===== */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-family: var(--font-main);
+  transition: border-color var(--transition);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--light-blue);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--orange);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: #f57c00;
+  transform: translateY(-2px);
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 900px) {
+  .logo-link {
+    left: 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    position: static;
+    padding: 1rem 1rem;
+  }
+  
+  .logo-link {
+    position: static;
+    transform: none;
+    margin: 0 auto 1rem auto;
+    align-self: center;
+  }
+  
+  .logo-link:hover {
+    transform: none !important;
+  }
+  
+  nav a:not(.logo-link) {
+    margin-left: 0;
+    text-align: center;
+  }
+  
+  main {
+    padding: 1rem 0.5rem;
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 1rem 0.5rem;
+  }
+  
+  nav a {
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+  }
+}

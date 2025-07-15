@@ -1,0 +1,183 @@
+/* Results Page Specific Styles */
+
+.results-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.results-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.results-header h1 {
+  color: var(--blue);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.results-summary {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.semester-section {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.semester-section h2 {
+  color: var(--blue);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--orange);
+}
+
+.results-table-container {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.results-table th {
+  background: var(--light-bg);
+  color: var(--text-dark);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--blue);
+}
+
+.results-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.results-table tr:hover {
+  background: var(--light-bg);
+}
+
+.grade-cell {
+  font-weight: 700;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.grade-a-plus {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.grade-a {
+  background: #e3f2fd;
+  color: var(--blue);
+}
+
+.grade-b-plus {
+  background: #fff3e0;
+  color: var(--orange);
+}
+
+.grade-b {
+  background: #fce4ec;
+  color: #c2185b;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.completed {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.status-badge.in-progress {
+  background: #fff3e0;
+  color: var(--orange);
+}
+
+.status-badge.pending {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.semester-stats {
+  background: var(--light-bg);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.semester-stats strong {
+  color: var(--blue);
+  font-size: 1.1rem;
+}
+
+.overall-stats {
+  background: var(--blue);
+  color: var(--white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.overall-stats h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.overall-cgpa {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.overall-credits {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .results-table {
+    font-size: 0.9rem;
+  }
+  
+  .results-table th,
+  .results-table td {
+    padding: 0.5rem;
+  }
+  
+  .overall-cgpa {
+    font-size: 2rem;
+  }
+}

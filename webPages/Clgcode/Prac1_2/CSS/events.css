@@ -1,0 +1,129 @@
+/* Events Page Specific Styles */
+
+.hero-section {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--light-blue) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: 0 0 30px 30px;
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.event-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.event-date {
+  background: var(--blue);
+  color: var(--white);
+  padding: 1rem;
+  text-align: center;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-date .day {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.event-date .month {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+.event-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.event-content h3 {
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.event-time, .event-location {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.event-description {
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.event-category {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.event-category.tech {
+  background: #e3f2fd;
+  color: var(--blue);
+}
+
+.event-category.cultural {
+  background: #fff3e0;
+  color: var(--orange);
+}
+
+.event-category.career {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.event-category.science {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.event-category.sports {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Make event cards horizontal on larger screens */
+@media (min-width: 768px) {
+  .event-card {
+    flex-direction: row;
+  }
+  
+  .event-date {
+    min-width: 100px;
+  }
+}
