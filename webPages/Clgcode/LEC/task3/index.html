@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <script src="function.js"></script>
+</head>
+<body>
+    <h1>simple arithmetic</h1>
+    <p>addition of 10 and 20</p>
+    <script>
+        
+        document.writeln("The sum is: " + add(10, 20));
+    </script>
+    <p>subtraction of 10 and 20</p>
+    <script>
+        document.writeln("The difference is: " + sub(20, 10));
+    </script>
+    <p>multiplication of 10 and 20</p>
+    <script>
+        document.writeln("The product is: " + multi(10, 20));
+    </script>
+    <p>division of 20 and 10</p>
+    <script>
+        document.writeln("The quotient is: " + division(20,10));
+    </script>
+    <script>
+        myfun();
+    </script>
+        <!--Three Two textbox one button  -->
+    <h3>Three Two textbox one button</h3>
+    <input type="text" id="no1" placeholder="Enter first number" /><br><br>
+    <input type="text" id="no2" placeholder="Enter second number" /><br><br>
+    <input type="text" id="res" placeholder="result" /><br><br>
+    <input type="button" value="Click" onclick="getSum()">
+    <script>
+        function getSum(){
+        let no1 = document.getElementById('no1').value;
+        let no2 = document.getElementById('no2').value;
+        let res = no1 + no2;
+    }
+    </script>
+    
+
+</body>
+</html>
