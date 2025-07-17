@@ -1,11 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animation</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    #animated-box {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 24px rgba(67, 206, 162, 0.2);
+      cursor: pointer;
+      animation: spin 2s linear infinite;
+    }
+
+    #animated-box:hover {
+      animation-play-state: paused;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #333;
+      width: 90%;
+      max-width: 500px;
+      text-align: justify;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
+      padding: 18px 24px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      animation: slide-in 0.5s ease-in-out;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes slide-in {
+      from {
+        transform: translateX(-100%);
+        opacity: 0.2;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 <body>
-    
+  <div class="container">
+    <div id="animated-box">Spinning</div>
+    <p>
+      This version includes animation using CSS <code>@keyframes</code>. The circle rotates continuously, and the paragraph slides in from the left when the page loads.
+    </p>
+  </div>
 </body>
 </html>
