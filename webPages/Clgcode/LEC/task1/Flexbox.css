@@ -1,43 +1,133 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+/* Enhanced Flexbox Styling for Superhero Gallery */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
   padding: 20px;
+  color: #333;
 }
 
 h1 {
   text-align: center;
-  color: #333;
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 3s ease-in-out infinite;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .box {
-  width: 200px;
-  height: 200px;
-  margin: 10px;
-  border: 1px solid #ccc;
+  width: 280px;
+  height: 350px;
   position: relative;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.box:hover {
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
 }
 
 .box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.box:hover img {
+  transform: scale(1.1);
 }
 
 .label {
   position: absolute;
   bottom: 0;
-  width: 100%;
-  background-color: black;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+  backdrop-filter: blur(10px);
   color: white;
   text-align: center;
-  padding: 5px 0;
-  font-size: 14px;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.box:hover .label {
+  transform: translateY(0);
+}
+
+/* Individual superhero color themes */
+.box:nth-child(1) {
+  border: 2px solid #4ecdc4;
+  box-shadow: 0 15px 35px rgba(78, 205, 196, 0.3);
+}
+
+.box:nth-child(2) {
+  border: 2px solid #ff6b6b;
+  box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3);
+}
+
+.box:nth-child(3) {
+  border: 2px solid #feca57;
+  box-shadow: 0 15px 35px rgba(254, 202, 87, 0.3);
+}
+
+.box:nth-child(4) {
+  border: 2px solid #48dbfb;
+  box-shadow: 0 15px 35px rgba(72, 219, 251, 0.3);
+}
+
+.box:nth-child(5) {
+  border: 2px solid #ff9ff3;
+  box-shadow: 0 15px 35px rgba(255, 159, 243, 0.3);
+}
+
+@keyframes gradientText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  .box { width: 250px; height: 300px; }
+  .container { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2rem; }
+  .box { width: 280px; height: 350px; }
+  .container { gap: 15px; }
 }
