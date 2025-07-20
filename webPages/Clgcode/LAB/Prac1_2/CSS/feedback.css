@@ -94,3 +94,340 @@
 .feedback-instructions li {
   margin-bottom: 0.5rem;
 }
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Desktop Large (1200px and up) */
+@media (min-width: 1200px) {
+  .feedback-header {
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .feedback-title {
+    font-size: 2.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .feedback-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .feedback-form-container {
+    max-width: 700px;
+    padding: 2.5rem;
+  }
+  
+  .feedback-form {
+    gap: 1.75rem;
+  }
+  
+  .feedback-textarea {
+    min-height: 150px;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+  }
+  
+  .feedback-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .feedback-instructions {
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* Desktop (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .feedback-header {
+    padding: 2.25rem;
+    margin-bottom: 2.25rem;
+  }
+  
+  .feedback-title {
+    font-size: 2.6rem;
+    margin-bottom: 1.1rem;
+  }
+  
+  .feedback-subtitle {
+    font-size: 1.15rem;
+  }
+  
+  .feedback-form-container {
+    max-width: 650px;
+    padding: 2.25rem;
+  }
+  
+  .feedback-form {
+    gap: 1.6rem;
+  }
+  
+  .feedback-textarea {
+    min-height: 140px;
+    padding: 1.1rem;
+    font-size: 1.05rem;
+  }
+  
+  .feedback-button {
+    padding: 0.95rem 2.25rem;
+    font-size: 1.05rem;
+  }
+  
+  .feedback-instructions {
+    padding: 1.75rem;
+    margin-bottom: 2.25rem;
+  }
+}
+
+/* Tablet Large (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .feedback-header {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .feedback-title {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feedback-subtitle {
+    font-size: 1.05rem;
+  }
+  
+  .feedback-form-container {
+    max-width: 550px;
+    padding: 2rem;
+  }
+  
+  .feedback-form {
+    gap: 1.4rem;
+  }
+  
+  .feedback-textarea {
+    min-height: 130px;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  .feedback-button {
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .feedback-instructions {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .feedback-instructions h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.85rem;
+  }
+}
+
+/* Tablet Small (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .feedback-header {
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .feedback-title {
+    font-size: 2rem;
+    margin-bottom: 0.85rem;
+  }
+  
+  .feedback-subtitle {
+    font-size: 1rem;
+  }
+  
+  .feedback-form-container {
+    max-width: 500px;
+    width: 95%;
+    padding: 1.75rem;
+  }
+  
+  .feedback-form {
+    gap: 1.25rem;
+  }
+  
+  .feedback-textarea {
+    min-height: 120px;
+    padding: 0.85rem;
+    font-size: 0.95rem;
+  }
+  
+  .feedback-button {
+    padding: 0.8rem 1.75rem;
+    font-size: 0.95rem;
+    align-self: center;
+  }
+  
+  .feedback-instructions {
+    padding: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .feedback-instructions h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .feedback-instructions ul {
+    padding-left: 1.25rem;
+  }
+  
+  .feedback-instructions li {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
+/* Mobile Large (480px to 575px) */
+@media (min-width: 480px) and (max-width: 575px) {
+  .feedback-header {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .feedback-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .feedback-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .feedback-form-container {
+    max-width: 450px;
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .feedback-form {
+    gap: 1.1rem;
+  }
+  
+  .form-group label {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .form-control {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  .feedback-textarea {
+    min-height: 110px;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .feedback-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    align-self: center;
+  }
+  
+  .feedback-instructions {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .feedback-instructions h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .feedback-instructions ul {
+    padding-left: 1.1rem;
+  }
+  
+  .feedback-instructions li {
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+}
+
+/* Mobile Small (up to 479px) */
+@media (max-width: 479px) {
+  .feedback-header {
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .feedback-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.65rem;
+  }
+  
+  .feedback-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .feedback-form-container {
+    max-width: 350px;
+    width: 95%;
+    padding: 1.25rem;
+  }
+  
+  .feedback-form {
+    gap: 1rem;
+  }
+  
+  .form-group {
+    margin-bottom: 0.85rem;
+  }
+  
+  .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  .form-control {
+    padding: 0.65rem;
+    font-size: 0.85rem;
+  }
+  
+  .feedback-textarea {
+    min-height: 100px;
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+  
+  .feedback-button {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.85rem;
+    align-self: stretch;
+  }
+  
+  .feedback-button:hover {
+    transform: none;
+  }
+  
+  .feedback-instructions {
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .feedback-instructions h3 {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .feedback-instructions ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+  
+  .feedback-instructions li {
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+}

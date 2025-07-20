@@ -117,13 +117,342 @@
   color: #c62828;
 }
 
-/* Make event cards horizontal on larger screens */
-@media (min-width: 768px) {
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Desktop Large (1200px and up) */
+@media (min-width: 1200px) {
+  .hero-section {
+    padding: 5rem 2rem;
+    border-radius: 0 0 40px 40px;
+  }
+  
+  .hero-title {
+    font-size: 2.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.35rem;
+  }
+  
+  .event-card {
+    flex-direction: row;
+  }
+  
+  .event-date {
+    min-width: 120px;
+    padding: 1.25rem;
+  }
+  
+  .event-date .day {
+    font-size: 2rem;
+  }
+  
+  .event-content {
+    padding: 1.75rem;
+  }
+  
+  .event-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Desktop (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hero-section {
+    padding: 4.5rem 2rem;
+    border-radius: 0 0 35px 35px;
+  }
+  
+  .hero-title {
+    font-size: 2.6rem;
+    margin-bottom: 1.1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .event-card {
+    flex-direction: row;
+  }
+  
+  .event-date {
+    min-width: 110px;
+    padding: 1.1rem;
+  }
+  
+  .event-date .day {
+    font-size: 1.9rem;
+  }
+  
+  .event-content {
+    padding: 1.6rem;
+  }
+  
+  .event-content h3 {
+    font-size: 1.45rem;
+    margin-bottom: 0.6rem;
+  }
+}
+
+/* Tablet Large (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero-section {
+    padding: 3.5rem 1.5rem;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 1.75rem;
+  }
+  
+  .hero-title {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
   .event-card {
     flex-direction: row;
   }
   
   .event-date {
     min-width: 100px;
+    padding: 1rem;
+  }
+  
+  .event-date .day {
+    font-size: 1.7rem;
+  }
+  
+  .event-date .month {
+    font-size: 0.85rem;
+  }
+  
+  .event-content {
+    padding: 1.4rem;
+  }
+  
+  .event-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .event-time, .event-location {
+    font-size: 0.85rem;
+  }
+  
+  .event-description {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Tablet Small (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .hero-section {
+    padding: 3rem 1.25rem;
+    border-radius: 0 0 25px 25px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .event-card {
+    flex-direction: column;
+  }
+  
+  .event-date {
+    min-width: auto;
+    padding: 1rem;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .event-date .day {
+    font-size: 1.6rem;
+  }
+  
+  .event-date .month {
+    font-size: 0.9rem;
+    margin-top: 0;
+  }
+  
+  .event-content {
+    padding: 1.25rem;
+  }
+  
+  .event-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .event-time, .event-location {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .event-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+  
+  .event-category {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+}
+
+/* Mobile Large (480px to 575px) */
+@media (min-width: 480px) and (max-width: 575px) {
+  .hero-section {
+    padding: 2.5rem 1rem;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 1.25rem;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .event-card {
+    flex-direction: column;
+  }
+  
+  .event-date {
+    min-width: auto;
+    padding: 0.75rem;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  
+  .event-date .day {
+    font-size: 1.5rem;
+  }
+  
+  .event-date .month {
+    font-size: 0.85rem;
+    margin-top: 0;
+  }
+  
+  .event-content {
+    padding: 1rem;
+  }
+  
+  .event-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .event-time, .event-location {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .event-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+  
+  .event-category {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+/* Mobile Small (up to 479px) */
+@media (max-width: 479px) {
+  .hero-section {
+    padding: 2rem 0.75rem;
+    border-radius: 0 0 15px 15px;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  
+  .event-card {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .event-card:hover {
+    transform: none;
+  }
+  
+  .event-date {
+    min-width: auto;
+    padding: 0.6rem;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+  
+  .event-date .day {
+    font-size: 1.3rem;
+  }
+  
+  .event-date .month {
+    font-size: 0.8rem;
+    margin-top: 0;
+  }
+  
+  .event-content {
+    padding: 0.85rem;
+  }
+  
+  .event-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .event-time, .event-location {
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .event-description {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+  }
+  
+  .event-category {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 10px;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
   }
 }
