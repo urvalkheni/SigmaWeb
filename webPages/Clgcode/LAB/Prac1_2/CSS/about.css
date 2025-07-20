@@ -31,3 +31,151 @@
   border-radius: 2px;
 }
 
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Desktop Large (1200px and up) */
+@media (min-width: 1200px) {
+  .section, .section-alt {
+    padding: 3rem 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+  }
+  
+  .section-title::after {
+    width: 80px;
+    height: 5px;
+  }
+}
+
+/* Desktop (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .section, .section-alt {
+    padding: 2.75rem 2.25rem;
+    margin-bottom: 2.25rem;
+  }
+  
+  .section-title {
+    font-size: 2.1rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .section-title::after {
+    width: 70px;
+  }
+}
+
+/* Tablet Large (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .section {
+    padding: 2.25rem 1.75rem;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+  }
+  
+  .section-alt {
+    padding: 2.25rem 1.75rem;
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.9rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-title::after {
+    width: 55px;
+    height: 3px;
+  }
+}
+
+/* Tablet Small (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .section {
+    padding: 2rem 1.5rem;
+    margin-bottom: 1.75rem;
+    border-radius: 12px;
+  }
+  
+  .section-alt {
+    padding: 2rem 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .section-title::after {
+    width: 50px;
+    height: 3px;
+  }
+}
+
+/* Mobile Large (480px to 575px) */
+@media (min-width: 480px) and (max-width: 575px) {
+  .section {
+    padding: 1.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+  }
+  
+  .section-alt {
+    padding: 1.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .section-title::after {
+    width: 45px;
+    height: 3px;
+  }
+}
+
+/* Mobile Small (up to 479px) */
+@media (max-width: 479px) {
+  .section {
+    padding: 1.5rem 1rem;
+    margin-bottom: 1.25rem;
+    border-radius: 8px;
+  }
+  
+  .section-alt {
+    padding: 1.5rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .section-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section-title::after {
+    width: 40px;
+    height: 3px;
+    margin: 0.75rem auto 0;
+  }
+  
+  /* Adjust text size for better readability on small screens */
+  .section p, .section-alt p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .section h2, .section-alt h2 {
+    font-size: 1.3rem;
+  }
+  
+  .section h3, .section-alt h3 {
+    font-size: 1.1rem;
+  }
+}
+
