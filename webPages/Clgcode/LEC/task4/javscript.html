@@ -1,0 +1,26 @@
+<script>
+    const str = 'Hello';
+console.log(str);
+let arry=['CE','IT','CSE','AIML'];
+console.log(arry);
+let arry1 = [...arry,'EC','EE'];
+console.log(arry1);
+
+let product = [416,'Mobile',10,10000];
+console.log(product);
+
+let order = [100,'${Date(Date.now)}',1000];
+console.log(order);
+
+const status1 =  [...product,...order,'delivered'];
+console.log(status1);
+
+function add(...rest){
+    let sum = 0;
+    for(let i of rest){
+        sum+=i;
+    }
+    return sum;
+}
+console.log(add(90,91,92,93,94,95,96,97,98,99,100));
+</script>
