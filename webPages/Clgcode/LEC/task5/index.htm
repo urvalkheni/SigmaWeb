@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form + Paragraph Control</title>
+</head>
+<body>
+
+  <button id="showDateBtn">Show Date</button>
+  <button id="addBtn">Add Paragraph</button>
+  <button id="delBtn">Delete Paragraph</button>
+
+  <h3 id="head"></h3>
+  <div id="container"></div> <!-- For the dynamic paragraph -->
+
+  <script>
+    const showDateBtn = document.getElementById('showDateBtn');
+    const addBtn = document.getElementById('addBtn');
+    const delBtn = document.getElementById('delBtn');
+    const head = document.getElementById('head');
+    const container = document.getElementById('container');
+
+    let para = null; // Reference to paragraph
+
+    // Show date feature
+    showDateBtn.addEventListener('click', function () {
+      head.textContent = `Today's date is ${new Date().toDateString()}`;
+    });
+
+    // Add paragraph
+    addBtn.addEventListener('click', function () {
+      if (!para) {
+        para = document.createElement('p');
+        para.id = 'dynamicPara';
+        para.textContent = 'This paragraph was added using JavaScript.';
+        container.appendChild(para);
+      }
+    });
+
+    // Delete paragraph
+    delBtn.addEventListener('click', function () {
+      if (para) {
+        para.remove();
+        para = null;
+      }
+    });
+  </script>
+</body>
+</html>
