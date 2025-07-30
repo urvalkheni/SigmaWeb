@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Control</title>
+</head>
+<body>
+  <form id="myform">
+    <input type="text" name="username" placeholder="Enter The Name" />
+    <button id="btn" type="button" onclick="checkName()">Submit</button>
+  </form>
+
+  <div id="output"></div> 
+
+  <script>
+    function checkName() {
+      const nameInput = document.forms["myform"].elements["username"];
+      const outputDiv = document.getElementById("output");
+
+      const heading = document.createElement("p");
+      heading.setAttribute("name", "fname");
+      heading.textContent = nameInput.value;
+
+      outputDiv.appendChild(heading);
+    }
+  </script>
+</body>
+</html>
