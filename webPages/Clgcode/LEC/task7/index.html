@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Operations</title>
+</head>
+<body>
+    <div class="container">
+        <h1>DOM Operations Demo</h1>
+        
+       
+        <form id="userForm">
+            <h3>Add User Data</h3>
+            <input type="text" name="username" id="username" placeholder="Enter the Username" required />
+            <input type="text" name="userid" id="userid" placeholder="Enter the User ID" required />
+            <button type="button" onclick="submitForm()">Submit & Create Table</button>
+        </form>
+
+        
+        <div class="demo-section">
+            <h3>DOM Operations Demo</h3>
+            <button class="add-btn" onclick="addElement()">Add Element</button>
+            <button class="delete-btn" onclick="deleteElement()">Delete Element</button>
+            <button onclick="appendElement()">Append Element</button>
+            
+            <div id="demoContainer">
+                <div class="demo-element">Original Element 1</div>
+                <div class="demo-element">Original Element 2</div>
+            </div>
+        </div>
+
+        
+        <div id="tableContainer"></div>
+    </div>
+
+    <script>
+        let userCount = 0;
+
+        
+        function submitForm() {
+            const username = document.getElementById('username').value;
+            const userid = document.getElementById('userid').value;
+            
+            if (!username || !userid) {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            userCount++;
+            
+            
+            let table = document.getElementById('userTable');
+            if (!table) {
+                table = createTable();
+            }
+            
+            
+            addTableRow(table, userCount, username, userid);
+            
+            
+            document.getElementById('userForm').reset();
+        }
+
+        
+        function createTable() {
+            const tableContainer = document.getElementById('tableContainer');
+            
+            
+            const table = document.createElement('table');
+            table.id = 'userTable';
+            
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            
+            const headers = ['S.No', 'Username', 'User ID', 'Action'];
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+            
+            
+            const tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+            
+            
+            tableContainer.appendChild(table);
+            
+            return table;
+        }
+
+        
+        function addTableRow(table, sno, username, userid) {
+            const tbody = table.querySelector('tbody');
+            const row = document.createElement('tr');
+            
+            
+            const snoCell = document.createElement('td');
+            snoCell.textContent = sno;
+            
+            const usernameCell = document.createElement('td');
+            usernameCell.textContent = username;
+            
+            const useridCell = document.createElement('td');
+            useridCell.textContent = userid;
+            
+            const actionCell = document.createElement('td');
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.onclick = function() {
+                deleteTableRow(row);
+            };
+            actionCell.appendChild(deleteBtn);
+            
+            
+            row.appendChild(snoCell);
+            row.appendChild(usernameCell);
+            row.appendChild(useridCell);
+            row.appendChild(actionCell);
+            
+            
+            tbody.appendChild(row);
+        }
+
+        
+        function deleteTableRow(row) {
+            row.remove();
+            updateSerialNumbers();
+        }
+
+        
+        function updateSerialNumbers() {
+            const table = document.getElementById('userTable');
+            if (table) {
+                const rows = table.querySelectorAll('tbody tr');
+                rows.forEach((row, index) => {
+                    row.cells[0].textContent = index + 1;
+                });
+            }
+        }
+
+        
+        function addElement() {
+            const container = document.getElementById('demoContainer');
+            const newElement = document.createElement('div');
+            newElement.className = 'demo-element';
+            newElement.textContent = 'Added Element ' + (container.children.length + 1);
+            container.appendChild(newElement);
+        }
+
+        
+        function deleteElement() {
+            const container = document.getElementById('demoContainer');
+            if (container.children.length > 0) {
+                container.removeChild(container.lastElementChild);
+            } else {
+                alert('No elements to delete!');
+            }
+        }
+
+        
+        function appendElement() {
+            const container = document.getElementById('demoContainer');
+            const newElement = document.createElement('div');
+            newElement.className = 'demo-element';
+            newElement.textContent = 'Appended Element ' + (container.children.length + 1);
+            
+            
+            container.insertBefore(newElement, container.firstChild);
+        }
+    </script>
+</body>
+</html>
