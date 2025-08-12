@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Object at Runtime</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .output {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f5e8;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+            display: none;
+        }
+
+        .output h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        .student-info {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .info-row {
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .clear-btn {
+            background-color: #f44336;
+            margin-top: 10px;
+            width: auto;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .clear-btn:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create Student Object</h2>
+        
+        <form id="studentForm">
+            <div class="form-group">
+                <label for="name">Student Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="roll">Roll Number:</label>
+                <input type="text" id="roll" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="course">Course:</label>
+                <input type="text" id="course" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email">
+            </div>
+            
+            <button type="button" onclick="createStudent()">Create Student Object</button>
+        </form>
+
+        <div id="output" class="output">
+            <h3>Student Object Created</h3>
+            <div id="studentDetails" class="student-info"></div>
+            <button class="clear-btn" onclick="clearOutput()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        let studentObjects = [];
+
+        function createStudent() {
+            const name = document.getElementById("name").value.trim();
+            const roll = document.getElementById("roll").value.trim();
+            const course = document.getElementById("course").value.trim();
+            const email = document.getElementById("email").value.trim();
+
+            if (!name || !roll || !course) {
+                alert("Please fill in all required fields!");
+                return;
+            }
+
+            const student = {
+                name: name,
+                rollNumber: roll,
+                course: course,
+                email: email || "Not provided",
+                getInfo: function() {
+                    return {
+                        name: this.name,
+                        rollNumber: this.rollNumber,
+                        course: this.course,
+                        email: this.email
+                    };
+                },
+                displayInfo: function() {
+                    return `
+                        <div class="info-row"><span class="label">Name:</span> ${this.name}</div>
+                        <div class="info-row"><span class="label">Roll Number:</span> ${this.rollNumber}</div>
+                        <div class="info-row"><span class="label">Course:</span> ${this.course}</div>
+                        <div class="info-row"><span class="label">Email:</span> ${this.email}</div>
+                    `;
+                }
+            };
+
+            studentObjects.push(student);
+            
+            document.getElementById("studentDetails").innerHTML = student.displayInfo();
+            document.getElementById("output").style.display = "block";
+            
+            console.log("Student Object Created:", student);
+            console.log("All Students:", studentObjects);
+            
+            clearForm();
+        }
+
+        function clearForm() {
+            document.getElementById("studentForm").reset();
+        }
+
+        function clearOutput() {
+            document.getElementById("output").style.display = "none";
+            document.getElementById("studentDetails").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
