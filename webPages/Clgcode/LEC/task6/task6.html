@@ -8,20 +8,38 @@
 <body>
   <form id="myform">
     <input type="text" name="username" placeholder="Enter The Name" />
-    <button id="btn" type="button" onclick="checkName()">Submit</button>
+    <button id="btn" type="submit">Submit</button>
   </form>
 
   <div id="output"></div> 
 
   <script>
+    const form = document.getElementById("myform");
+    const outputDiv = document.getElementById("output");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      checkName();
+    });
+
     function checkName() {
       const nameInput = document.forms["myform"].elements["username"];
-      const outputDiv = document.getElementById("output");
+      const nameValue = nameInput.value.trim();
 
-      const heading = document.createElement("p");
-      heading.setAttribute("name", "fname");
-      heading.textContent = nameInput.value;
+      outputDiv.textContent = "";
 
+      if (!nameValue) {
+        outputDiv.textContent = "Please enter a valid name.";
+        outputDiv.style.color = "crimson";
+        nameInput.focus();
+        return;
+      }
+
+      const heading = document.createElement("h2");
+      heading.id = "fname";
+      heading.textContent = "Hello, " + nameValue + "!";
+
+      outputDiv.style.color = "#222";
       outputDiv.appendChild(heading);
     }
   </script>

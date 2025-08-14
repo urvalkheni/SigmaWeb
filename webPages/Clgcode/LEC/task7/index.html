@@ -17,6 +17,8 @@
             <button type="button" onclick="submitForm()">Submit & Create Table</button>
         </form>
 
+        <button type="button" onclick="clearTable()">Clear Table</button>
+
         
         <div class="demo-section">
             <h3>DOM Operations Demo</h3>
@@ -39,8 +41,8 @@
 
         
         function submitForm() {
-            const username = document.getElementById('username').value;
-            const userid = document.getElementById('userid').value;
+            const username = document.getElementById('username').value.trim();
+            const userid = document.getElementById('userid').value.trim();
             
             if (!username || !userid) {
                 alert('Please fill in all fields!');
@@ -125,6 +127,14 @@
             
             
             tbody.appendChild(row);
+        }
+
+        function clearTable() {
+            const table = document.getElementById('userTable');
+            if (table) {
+                table.remove();
+            }
+            userCount = 0;
         }
 
         
