@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --accent: #22c55e;
+            --accent-2: #38bdf8;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            background: radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.15), transparent 60%),
+                        radial-gradient(1200px 600px at 90% 110%, rgba(34,197,94,.12), transparent 60%),
+                        var(--bg);
+            min-height: 100vh;
+            display: grid;
+            place-items: start center;
+            padding: 32px 16px 64px;
+        }
+
+        .container {
+            width: min(900px, 100%);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+            border: 1px solid rgba(255,255,255,.08);
+            backdrop-filter: blur(6px);
+            padding: 16px 20px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.25);
+            margin-bottom: 16px;
+        }
+
+        header h1 {
+            font-size: 20px;
+            margin: 0;
+            letter-spacing: .3px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        select {
+            appearance: none;
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,.12);
+            padding: 10px 12px;
+            border-radius: 10px;
+            outline: none;
+            cursor: pointer;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+        select:focus {
+            border-color: var(--accent-2);
+            box-shadow: 0 0 0 3px rgba(56,189,248,.25);
+        }
+
+        .lists {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .list-card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 12px 24px rgba(0,0,0,.2);
+        }
+
+        .list-card h2 {
+            margin: 0 0 10px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+        }
+
+        ul, ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            line-height: 1.6;
+            padding: 6px 8px;
+            border-left: 2px solid transparent;
+            transition: border-color .2s ease, background .2s ease;
+        }
+
+        li:hover {
+            border-color: var(--accent);
+            background: rgba(34,197,94,.08);
+        }
+
+        @media (max-width: 700px) {
+            .lists { grid-template-columns: 1fr; }
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Product List</h1>
+            <div class="controls">
+                <label for="sort">Sort by:</label>
+                <select id="sort" aria-label="Sort products">
+                    <option value="default">Default</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="name-asc">Name: A → Z</option>
+                    <option value="name-desc">Name: Z → A</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="lists">
+            <div class="list-card">
+                <h2>Unordered</h2>
+                <ul id="u1"></ul>
+            </div>
+            <div class="list-card">
+                <h2>Ordered</h2>
+                <ol id="o1"></ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { id: 101, name: 'Mobile', quantity: 100, price: 10000 },
+            { id: 102, name: 'PC',     quantity: 100, price: 15000 },
+            { id: 103, name: 'Hairdryer', quantity: 50, price: 1500 },
+            { id: 104, name: 'Fridge', quantity: 200, price: 20000 },
+            { id: 105, name: 'Washing Machine', quantity: 10, price: 35000 },
+            { id: 106, name: 'Headphone', quantity: 300, price: 2000 }
+        ];
+
+        const unorderedListElement = document.getElementById('u1');
+        const orderedListElement = document.getElementById('o1');
+        const sortSelectElement = document.getElementById('sort');
+
+        function formatProductLine(product) {
+            return `ID: ${product.id}, Name: ${product.name}, Quantity: ${product.quantity}, Price: ₹${product.price.toLocaleString()}`;
+        }
+
+        function renderProductLists(productArray) {
+            unorderedListElement.innerHTML = '';
+            orderedListElement.innerHTML = '';
+
+            productArray.forEach((product) => {
+                const unorderedItem = document.createElement('li');
+                unorderedItem.textContent = formatProductLine(product);
+                unorderedListElement.appendChild(unorderedItem);
+
+                const orderedItem = document.createElement('li');
+                orderedItem.textContent = formatProductLine(product);
+                orderedListElement.appendChild(orderedItem);
+            });
+        }
+
+        function getSortedProducts(sortKey) {
+            const cloned = [...products];
+            switch (sortKey) {
+                case 'price-asc':
+                    return cloned.sort((a, b) => a.price - b.price);
+                case 'price-desc':
+                    return cloned.sort((a, b) => b.price - a.price);
+                case 'name-asc':
+                    return cloned.sort((a, b) => a.name.localeCompare(b.name));
+                case 'name-desc':
+                    return cloned.sort((a, b) => b.name.localeCompare(a.name));
+                default:
+                    return products;
+            }
+        }
+
+        sortSelectElement.addEventListener('change', (event) => {
+            const sorted = getSortedProducts(event.target.value);
+            renderProductLists(sorted);
+        });
+
+        renderProductLists(products);
+    </script>
+</body>
+</html>
