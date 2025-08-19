@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Portal Dashboard</title>
+    <title>Basic Interactive Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body data-theme="light">
+<body>
     <!-- Notification Banner -->
     <div class="notification-banner" id="notificationBanner">
         <span id="notificationText">Welcome to Interactive Portal!</span>
@@ -16,34 +16,31 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>Interactive Portal Dashboard</h1>
-            <button class="theme-switcher" id="themeSwitcher">🌙 Dark Mode</button>
+            <h1>Basic Interactive Dashboard</h1>
         </header>
 
         <!-- Main Grid Layout -->
         <div class="grid">
             <!-- Image Slider Card -->
             <div class="card">
-                <h2>🖼️ Image Slider</h2>
+                <h2>Image Slider</h2>
                 <div class="slider-container">
                     <div class="slider" id="slider">
-                        <div class="slide">Slide 1 - Welcome</div>
-                        <div class="slide">Slide 2 - Features</div>
-                        <div class="slide">Slide 3 - Contact</div>
+                        <div class="slide">Slide 1</div>
+                        <div class="slide">Slide 2</div>
+                        <div class="slide">Slide 3</div>
                     </div>
                 </div>
                 <div class="slider-controls">
-                    <button class="slider-btn" id="prevBtn">← Previous</button>
-                    <button class="slider-btn" id="nextBtn">Next →</button>
+                    <button class="slider-btn" id="prevBtn">Previous</button>
+                    <button class="slider-btn" id="nextBtn">Next</button>
                 </div>
             </div>
 
             <!-- Interactive Buttons Card -->
             <div class="card">
-                <h2>🚀 Interactive Actions</h2>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                    Click buttons to trigger various interactive elements and notifications.
-                </p>
+                <h2>Actions</h2>
+                <p style="color: var(--text-muted); margin-bottom: 8px;">Basic buttons to show interactions.</p>
                 <div class="interactive-buttons">
                     <button class="btn btn-primary" id="openModal">Open Modal</button>
                     <button class="btn btn-success" id="successNotif">Success Alert</button>
@@ -55,13 +52,13 @@
 
         <!-- FAQ Section -->
         <div class="card">
-            <h2>❓ Frequently Asked Questions</h2>
+            <h2>Frequently Asked Questions</h2>
             <div id="faqContainer"></div>
         </div>
 
         <!-- Statistics Dashboard -->
         <div class="card">
-            <h2>📊 Live Statistics</h2>
+            <h2>Live Statistics</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number" id="clickCounter">0</div>
@@ -70,10 +67,6 @@
                 <div class="stat-card">
                     <div class="stat-number" id="modalOpens">0</div>
                     <div class="stat-label">Modal Opens</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="themeChanges">0</div>
-                    <div class="stat-label">Theme Changes</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number" id="faqExpands">0</div>
@@ -87,7 +80,7 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <div class="modal-header">
-                <h3>🎉 Dynamic Modal</h3>
+                <h3>Modal</h3>
                 <button class="modal-close" id="modalClose">×</button>
             </div>
             <div class="modal-body">
