@@ -32,9 +32,7 @@ const state = {
     currentSlide: 0,
     totalClicks: 0,
     modalOpens: 0,
-    themeChanges: 0,
-    faqExpands: 0,
-    isDarkMode: false
+    faqExpands: 0
 };
 
 // DOM element references
@@ -42,7 +40,7 @@ const elements = {
     notificationBanner: document.getElementById('notificationBanner'),
     notificationText: document.getElementById('notificationText'),
     notificationClose: document.getElementById('notificationClose'),
-    themeSwitcher: document.getElementById('themeSwitcher'),
+    // theme switcher removed
     slider: document.getElementById('slider'),
     prevBtn: document.getElementById('prevBtn'),
     nextBtn: document.getElementById('nextBtn'),
@@ -55,7 +53,7 @@ const elements = {
     faqContainer: document.getElementById('faqContainer'),
     clickCounter: document.getElementById('clickCounter'),
     modalCounter: document.getElementById('modalOpens'),
-    themeCounter: document.getElementById('themeChanges'),
+    // theme counter removed
     faqCounter: document.getElementById('faqExpands')
 };
 
@@ -63,7 +61,6 @@ const elements = {
 function updateStatistics() {
     elements.clickCounter.textContent = state.totalClicks;
     elements.modalCounter.textContent = state.modalOpens;
-    elements.themeCounter.textContent = state.themeChanges;
     elements.faqCounter.textContent = state.faqExpands;
 }
 
@@ -82,18 +79,7 @@ function showNotification(message, type = 'success') {
     }, 4000);
 }
 
-// Theme switching functionality
-function toggleTheme() {
-    state.isDarkMode = !state.isDarkMode;
-    state.themeChanges++;
-    
-    document.body.setAttribute('data-theme', state.isDarkMode ? 'dark' : 'light');
-    elements.themeSwitcher.textContent = state.isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode';
-    
-    showNotification(`Switched to ${state.isDarkMode ? 'dark' : 'light'} mode`, 'success');
-    incrementClicks();
-    updateStatistics();
-}
+// (dark mode removed)
 
 // Slider functionality
 function updateSlider() {
@@ -167,47 +153,9 @@ function startAutoSlider() {
     }, 5000); // Auto-advance every 5 seconds
 }
 
-// Ripple effect for buttons
-function createRippleEffect(event) {
-    const button = event.currentTarget;
-    const ripple = document.createElement('span');
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
-    
-    ripple.style.cssText = `
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.6);
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-        left: ${x}px;
-        top: ${y}px;
-        width: ${size}px;
-        height: ${size}px;
-        pointer-events: none;
-    `;
-    
-    button.style.position = 'relative';
-    button.style.overflow = 'hidden';
-    button.appendChild(ripple);
-    
-    // Remove ripple element after animation
-    setTimeout(() => {
-        if (ripple.parentNode) {
-            ripple.remove();
-        }
-    }, 600);
-}
-
 // Event listeners setup
 function setupEventListeners() {
-    // Theme switcher
-    elements.themeSwitcher.addEventListener('click', (e) => {
-        toggleTheme();
-        createRippleEffect(e);
-    });
+    // (theme switcher removed)
     
     // Notification banner close
     elements.notificationClose.addEventListener('click', () => {
@@ -216,20 +164,17 @@ function setupEventListeners() {
     });
     
     // Slider controls
-    elements.nextBtn.addEventListener('click', (e) => {
+    elements.nextBtn.addEventListener('click', () => {
         nextSlide();
-        createRippleEffect(e);
     });
     
-    elements.prevBtn.addEventListener('click', (e) => {
+    elements.prevBtn.addEventListener('click', () => {
         prevSlide();
-        createRippleEffect(e);
     });
     
     // Modal controls
-    elements.openModal.addEventListener('click', (e) => {
+    elements.openModal.addEventListener('click', () => {
         openModal();
-        createRippleEffect(e);
     });
     
     elements.modalClose.addEventListener('click', closeModal);
@@ -242,24 +187,21 @@ function setupEventListeners() {
     });
     
     // Notification buttons
-    elements.successNotif.addEventListener('click', (e) => {
+    elements.successNotif.addEventListener('click', () => {
         showNotification('Operation completed successfully!', 'success');
         incrementClicks();
-        createRippleEffect(e);
     });
     
-    elements.warningNotif.addEventListener('click', (e) => {
+    elements.warningNotif.addEventListener('click', () => {
         showNotification('Please review your settings', 'warning');
         incrementClicks();
-        createRippleEffect(e);
     });
     
-    elements.errorNotif.addEventListener('click', (e) => {
+    elements.errorNotif.addEventListener('click', () => {
         showNotification('An error occurred. Please try again.', 'error');
         incrementClicks();
-        createRippleEffect(e);
     });
-    
+
     // FAQ event delegation
     elements.faqContainer.addEventListener('click', (e) => {
         const faqItem = e.target.closest('.faq-item');
@@ -267,7 +209,7 @@ function setupEventListeners() {
             toggleFAQ(faqItem);
         }
     });
-    
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         switch(e.key) {
@@ -293,15 +235,6 @@ function setupEventListeners() {
                 break;
         }
     });
-    
-    // Add ripple effect to all interactive buttons
-    document.addEventListener('click', (e) => {
-        if (e.target.matches('.btn:not(.btn-applied), .slider-btn:not(.btn-applied)')) {
-            createRippleEffect(e);
-            e.target.classList.add('btn-applied'); // Prevent double application
-            setTimeout(() => e.target.classList.remove('btn-applied'), 100);
-        }
-    });
 }
 
 // Performance optimization: Debounced resize handler
@@ -325,7 +258,7 @@ const handleResize = debounce(() => {
 
 // Initialize application
 function initializeApp() {
-    console.log('🚀 Initializing Interactive Portal...');
+    console.log('Initializing dashboard...');
     
     try {
         // Create FAQ items from JSON data
@@ -348,10 +281,10 @@ function initializeApp() {
             showNotification('Interactive portal loaded successfully!', 'success');
         }, 1000);
         
-        console.log('✅ Portal initialized successfully!');
+        console.log('Dashboard initialized successfully');
         
     } catch (error) {
-        console.error('❌ Error initializing portal:', error);
+        console.error('Error initializing dashboard:', error);
         showNotification('Error loading portal. Please refresh the page.', 'error');
     }
 }
