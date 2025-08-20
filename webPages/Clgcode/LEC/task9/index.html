@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Student Information</h1>
+
+    <label> Name : </label>
+    <input type="text" id="name">
+    <label> Id : </label>
+    <input type="text" id="roll">
+
+    <input type="submit" id="stuinfo" value="Show Student Info">
+
+    <ul id="detail"></ul>
+
+    <script>
+        const stuinfo = document.getElementById('stuinfo');
+
+        stuinfo.addEventListener('click', () => {
+            const detail = document.getElementById('detail');
+
+            const name = document.getElementById('name').value;
+            const id = document.getElementById('roll').value;
+
+            var students = [
+                { Name: name, ID: id }
+            ];
+
+            const li = document.createElement('li');
+            li.textContent = `Name of student is ${students[0].Name} & Id of the student is ${students[0].ID}`;
+            detail.appendChild(li);
+        });
+    </script>
+</body>
+</html>
