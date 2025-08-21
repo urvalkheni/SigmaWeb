@@ -4,38 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student Information</title>
 </head>
 
 <body>
     <h1>Student Information</h1>
 
-    <label> Name : </label>
+    <!-- Student Input -->
+    <label>Name : </label>
     <input type="text" id="name">
-    <label> Id : </label>
+    <label>Id : </label>
     <input type="text" id="roll">
 
-    <input type="submit" id="stuinfo" value="Show Student Info">
+    <input type="submit" id="stuinfo" value="Add Student">
+    <input type="button" id="clearAll" value="Clear All">
 
+    <h3>Student List:</h3>
     <ul id="detail"></ul>
 
+    <p id="count"></p>
+
+    <!-- Search Feature -->
+    <h3>Search Student by ID:</h3>
+    <input type="text" id="searchId" placeholder="Enter ID">
+    <input type="button" id="searchBtn" value="Search">
+    <p id="searchResult"></p>
+
     <script>
-        const stuinfo = document.getElementById('stuinfo');
+        const students = [];
+        const detail = document.getElementById('detail');
+        const count = document.getElementById('count');
 
-        stuinfo.addEventListener('click', () => {
-            const detail = document.getElementById('detail');
+        // Add Student
+        document.getElementById('stuinfo').addEventListener('click', () => {
+            const name = document.getElementById('name').value.trim();
+            const id = document.getElementById('roll').value.trim();
 
-            const name = document.getElementById('name').value;
-            const id = document.getElementById('roll').value;
+            if (name === "" || id === "") {
+                alert("Please enter both Name and ID.");
+                return;
+            }
 
-            var students = [
-                { Name: name, ID: id }
-            ];
+            students.push({ Name: name, ID: id });
 
             const li = document.createElement('li');
-            li.textContent = `Name of student is ${students[0].Name} & Id of the student is ${students[0].ID}`;
+            li.textContent = `Name: ${name}, ID: ${id}`;
             detail.appendChild(li);
+
+            count.textContent = `Total Students: ${students.length}`;
+
+            document.getElementById('name').value = "";
+            document.getElementById('roll').value = "";
+        });
+
+        // Clear All
+        document.getElementById('clearAll').addEventListener('click', () => {
+            students.length = 0;
+            detail.innerHTML = "";
+            count.textContent = "Total Students: 0";
+        });
+
+        // Search by ID
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const searchId = document.getElementById('searchId').value.trim();
+            const result = document.getElementById('searchResult');
+
+            if (searchId === "") {
+                result.textContent = "Enter an ID to search.";
+                return;
+            }
+
+            const found = students.find(stu => stu.ID === searchId);
+
+            if (found) {
+                result.textContent = `Found: Name = ${found.Name}, ID = ${found.ID}`;
+            } else {
+                result.textContent = "No student found with this ID.";
+            }
         });
     </script>
 </body>
+
 </html>
