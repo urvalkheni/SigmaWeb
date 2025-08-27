@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Information</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; max-width: 720px; margin: 24px auto; padding: 0 16px; }
+        h1 { margin-bottom: 8px; }
+        label { margin-right: 6px; }
+        input[type="text"] { padding: 6px 8px; margin: 4px 8px 12px 0; }
+        input[type="submit"], input[type="button"] { padding: 6px 10px; margin-right: 8px; cursor: pointer; }
+        ul { padding-left: 18px; }
+        #message { color: #b00020; margin-top: 8px; }
+        #searchResult { margin-top: 6px; }
+        .muted { color: #666; }
+    </style>
 </head>
 
 <body>
@@ -12,9 +23,9 @@
 
     <!-- Student Input -->
     <label>Name : </label>
-    <input type="text" id="name">
+    <input type="text" id="name" placeholder="Enter full name" autofocus>
     <label>Id : </label>
-    <input type="text" id="roll">
+    <input type="text" id="roll" placeholder="Enter unique ID">
 
     <input type="submit" id="stuinfo" value="Add Student">
     <input type="button" id="clearAll" value="Clear All">
@@ -22,7 +33,8 @@
     <h3>Student List:</h3>
     <ul id="detail"></ul>
 
-    <p id="count"></p>
+    <p id="count" class="muted"></p>
+    <p id="message"></p>
 
     <!-- Search Feature -->
     <h3>Search Student by ID:</h3>
@@ -34,14 +46,23 @@
         const students = [];
         const detail = document.getElementById('detail');
         const count = document.getElementById('count');
+        const nameInput = document.getElementById('name');
+        const idInput = document.getElementById('roll');
+        const message = document.getElementById('message');
 
         // Add Student
         document.getElementById('stuinfo').addEventListener('click', () => {
-            const name = document.getElementById('name').value.trim();
-            const id = document.getElementById('roll').value.trim();
+            const name = nameInput.value.replace(/\s+/g, ' ').trim();
+            const id = idInput.value.trim();
 
             if (name === "" || id === "") {
                 alert("Please enter both Name and ID.");
+                return;
+            }
+
+            if (students.some(stu => stu.ID === id)) {
+                message.textContent = "This ID already exists. Please enter a unique ID.";
+                idInput.focus();
                 return;
             }
 
@@ -53,8 +74,20 @@
 
             count.textContent = `Total Students: ${students.length}`;
 
-            document.getElementById('name').value = "";
-            document.getElementById('roll').value = "";
+            nameInput.value = "";
+            idInput.value = "";
+            message.textContent = "";
+            nameInput.focus();
+        });
+
+        // Allow Enter key to add student from either text field
+        [nameInput, idInput].forEach(el => {
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    document.getElementById('stuinfo').click();
+                }
+            });
         });
 
         // Clear All
@@ -62,6 +95,10 @@
             students.length = 0;
             detail.innerHTML = "";
             count.textContent = "Total Students: 0";
+            message.textContent = "";
+            document.getElementById('searchResult').textContent = "";
+            document.getElementById('searchId').value = "";
+            nameInput.focus();
         });
 
         // Search by ID
