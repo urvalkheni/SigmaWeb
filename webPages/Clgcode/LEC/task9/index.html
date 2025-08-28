@@ -22,13 +22,16 @@
     <h1>Student Information</h1>
 
     <!-- Student Input -->
-    <label>Name : </label>
-    <input type="text" id="name" placeholder="Enter full name" autofocus>
-    <label>Id : </label>
-    <input type="text" id="roll" placeholder="Enter unique ID">
+    <form id="studentForm" aria-labelledby="formTitle">
+        <h2 id="formTitle" style="margin: 12px 0 8px;">Add a Student</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter full name" autocomplete="name" autofocus>
+        <label for="roll">ID:</label>
+        <input type="text" id="roll" name="roll" placeholder="Enter unique ID" inputmode="numeric">
 
-    <input type="submit" id="stuinfo" value="Add Student">
-    <input type="button" id="clearAll" value="Clear All">
+        <input type="submit" id="stuinfo" value="Add Student">
+        <input type="button" id="clearAll" value="Clear All">
+    </form>
 
     <h3>Student List:</h3>
     <ul id="detail"></ul>
@@ -50,8 +53,9 @@
         const idInput = document.getElementById('roll');
         const message = document.getElementById('message');
 
-        // Add Student
-        document.getElementById('stuinfo').addEventListener('click', () => {
+        // Add Student (form submit)
+        document.getElementById('studentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
             const name = nameInput.value.replace(/\s+/g, ' ').trim();
             const id = idInput.value.trim();
 
@@ -80,13 +84,10 @@
             nameInput.focus();
         });
 
-        // Allow Enter key to add student from either text field
+        // Clear message when user edits inputs
         [nameInput, idInput].forEach(el => {
-            el.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    document.getElementById('stuinfo').click();
-                }
+            el.addEventListener('input', () => {
+                message.textContent = '';
             });
         });
 
