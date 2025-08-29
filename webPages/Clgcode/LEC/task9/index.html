@@ -53,6 +53,53 @@
         const idInput = document.getElementById('roll');
         const message = document.getElementById('message');
 
+        function saveStudents() {
+            try {
+                localStorage.setItem('task9_students', JSON.stringify(students));
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function loadStudents() {
+            try {
+                const raw = localStorage.getItem('task9_students');
+                if (!raw) return;
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed)) {
+                    parsed.forEach(stu => {
+                        if (stu && typeof stu === 'object' && 'Name' in stu && 'ID' in stu) {
+                            students.push({ Name: String(stu.Name), ID: String(stu.ID) });
+                        }
+                    });
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderStudents() {
+            detail.innerHTML = '';
+            students.forEach((stu, index) => {
+                const li = document.createElement('li');
+                const text = document.createElement('span');
+                text.textContent = `Name: ${stu.Name}, ID: ${stu.ID}`;
+                const delBtn = document.createElement('button');
+                delBtn.type = 'button';
+                delBtn.textContent = 'Delete';
+                delBtn.style.marginLeft = '8px';
+                delBtn.addEventListener('click', () => {
+                    students.splice(index, 1);
+                    saveStudents();
+                    renderStudents();
+                });
+                li.appendChild(text);
+                li.appendChild(delBtn);
+                detail.appendChild(li);
+            });
+            count.textContent = `Total Students: ${students.length}`;
+        }
+
         // Add Student (form submit)
         document.getElementById('studentForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -71,12 +118,8 @@
             }
 
             students.push({ Name: name, ID: id });
-
-            const li = document.createElement('li');
-            li.textContent = `Name: ${name}, ID: ${id}`;
-            detail.appendChild(li);
-
-            count.textContent = `Total Students: ${students.length}`;
+            saveStudents();
+            renderStudents();
 
             nameInput.value = "";
             idInput.value = "";
@@ -100,6 +143,7 @@
             document.getElementById('searchResult').textContent = "";
             document.getElementById('searchId').value = "";
             nameInput.focus();
+            try { localStorage.removeItem('task9_students'); } catch (err) { console.error(err); }
         });
 
         // Search by ID
@@ -120,6 +164,10 @@
                 result.textContent = "No student found with this ID.";
             }
         });
+
+        // Initialize
+        loadStudents();
+        renderStudents();
     </script>
 </body>
 

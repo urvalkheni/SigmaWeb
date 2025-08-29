@@ -164,6 +164,9 @@
             #Container { grid-template-columns: 1fr; }
             .grid-info { padding: 20px; }
         }
+        .toolbar { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
+        .toolbar input[type="range"] { width: 280px; }
+        .toolbar output { min-width: 3ch; display: inline-block; text-align: right; }
     </style>
 </head>
 <body>
@@ -184,6 +187,15 @@
                 gap: 20px;<br>
                 grid-auto-rows: minmax(200px, auto);
             </div>
+        </div>
+
+        <div class="toolbar" aria-label="Layout controls">
+            <label for="cols">Columns:</label>
+            <input id="cols" type="range" min="1" max="6" value="0" aria-label="Columns">
+            <output id="colsOut">auto</output>
+            <label for="gap">Gap:</label>
+            <input id="gap" type="range" min="0" max="48" step="2" value="20" aria-label="Gap">
+            <output id="gapOut">20px</output>
         </div>
 
         <div id="Container">
@@ -213,5 +225,36 @@
             </div>
         </div>
     </div>
+    <script>
+        const container = document.getElementById('Container');
+        const cols = document.getElementById('cols');
+        const colsOut = document.getElementById('colsOut');
+        const gap = document.getElementById('gap');
+        const gapOut = document.getElementById('gapOut');
+
+        function updateColumns() {
+            const value = Number(cols.value);
+            if (value <= 1) {
+                container.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+                colsOut.textContent = 'auto';
+            } else {
+                container.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
+                colsOut.textContent = String(value);
+            }
+        }
+
+        function updateGap() {
+            const value = Number(gap.value);
+            container.style.gap = `${value}px`;
+            gapOut.textContent = `${value}px`;
+        }
+
+        cols.addEventListener('input', updateColumns);
+        gap.addEventListener('input', updateGap);
+
+        // Initialize outputs
+        updateColumns();
+        updateGap();
+    </script>
 </body>
 </html>

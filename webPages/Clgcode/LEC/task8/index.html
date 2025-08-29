@@ -59,6 +59,15 @@
             gap: 10px;
         }
 
+        .controls input[type="search"] {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,.12);
+            padding: 10px 12px;
+            border-radius: 10px;
+            outline: none;
+        }
+
         select {
             appearance: none;
             background: var(--card);
@@ -126,6 +135,7 @@
         <header>
             <h1>Product List</h1>
             <div class="controls">
+                <input id="query" type="search" placeholder="Search by name…" aria-label="Filter products by name">
                 <label for="sort">Sort by:</label>
                 <select id="sort" aria-label="Sort products">
                     <option value="default">Default</option>
@@ -139,7 +149,7 @@
 
         <div class="lists">
             <div class="list-card">
-                <h2>Unordered</h2>
+                <h2>Unordered <small id="count" style="color: var(--muted);"></small></h2>
                 <ul id="u1"></ul>
             </div>
             <div class="list-card">
@@ -162,6 +172,8 @@
         const unorderedListElement = document.getElementById('u1');
         const orderedListElement = document.getElementById('o1');
         const sortSelectElement = document.getElementById('sort');
+        const queryInputElement = document.getElementById('query');
+        const countElement = document.getElementById('count');
 
         function formatProductLine(product) {
             return `ID: ${product.id}, Name: ${product.name}, Quantity: ${product.quantity}, Price: ₹${product.price.toLocaleString()}`;
@@ -180,6 +192,7 @@
                 orderedItem.textContent = formatProductLine(product);
                 orderedListElement.appendChild(orderedItem);
             });
+            countElement.textContent = `(${productArray.length})`;
         }
 
         function getSortedProducts(sortKey) {
@@ -198,10 +211,35 @@
             }
         }
 
-        sortSelectElement.addEventListener('change', (event) => {
-            const sorted = getSortedProducts(event.target.value);
+        function getFilteredProducts(query) {
+            const q = query.trim().toLowerCase();
+            if (!q) return products;
+            return products.filter(p => p.name.toLowerCase().includes(q));
+        }
+
+        function updateLists() {
+            const filtered = getFilteredProducts(queryInputElement.value);
+            const sorted = (() => {
+                const sortKey = sortSelectElement.value;
+                const cloned = [...filtered];
+                switch (sortKey) {
+                    case 'price-asc':
+                        return cloned.sort((a, b) => a.price - b.price);
+                    case 'price-desc':
+                        return cloned.sort((a, b) => b.price - a.price);
+                    case 'name-asc':
+                        return cloned.sort((a, b) => a.name.localeCompare(b.name));
+                    case 'name-desc':
+                        return cloned.sort((a, b) => b.name.localeCompare(a.name));
+                    default:
+                        return filtered;
+                }
+            })();
             renderProductLists(sorted);
-        });
+        }
+
+        sortSelectElement.addEventListener('change', updateLists);
+        queryInputElement.addEventListener('input', updateLists);
 
         renderProductLists(products);
     </script>

@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Operations</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; max-width: 900px; margin: 24px auto; padding: 0 16px; }
+        .container { display: grid; gap: 16px; }
+        input[type="text"] { padding: 8px 10px; margin-right: 8px; }
+        button { padding: 8px 12px; margin-right: 8px; cursor: pointer; }
+        table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #f3f4f6; }
+        .demo-element { background: #f0f9ff; padding: 8px 10px; border: 1px dashed #93c5fd; margin: 6px 0; }
+        #message { color: #b00020; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -46,6 +57,14 @@
             
             if (!username || !userid) {
                 alert('Please fill in all fields!');
+                return;
+            }
+
+            // Prevent duplicate User IDs
+            const existingIds = Array.from(document.querySelectorAll('#userTable tbody tr td:nth-child(3)'))
+                .map(td => td.textContent.trim());
+            if (existingIds.includes(userid)) {
+                alert('This User ID already exists. Use a unique ID.');
                 return;
             }
 
