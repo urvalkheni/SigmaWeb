@@ -8,9 +8,9 @@
 <body>
     <h2>Log in Pannel</h2>
     <form action="" method="post">
-        <input type="text" name="username" placeholder="Enter Username" required><br><br>
-        <input type="password" name="password" placeholder="Enter Password" required><br><br>
-        <input type="text" name="department" placeholder="Enter Department" required><br><br>
+        <input type="text" name="username" placeholder="Enter Username" ><br><br>
+        <input type="password" name="password" placeholder="Enter Password" ><br><br>
+        <input type="text" name="department" placeholder="Enter Department" ><br><br>
         <input type="submit" value="Login"><br><br>
     <?php
 
