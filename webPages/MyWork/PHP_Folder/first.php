@@ -24,9 +24,9 @@
 echo "<h2>Welcome to PHP Basics</h2>";
 
 // Variables
-$number = 8238496254;
+$number = 9999999999;
 $name = "PHP";
-
+$urval = 12;
 // Displaying variables
 echo "<div class='section'>";
 echo "<div class='result'>Number is: <strong>$number</strong></div><br>";
@@ -57,8 +57,8 @@ function isEven($n) {
 }
 
 echo "<div class='section'>";
-echo "The square of <strong>$number</strong> is: <span class='result'>" . square($number) . "</span><br>";
-echo "The number <strong>$number</strong> is: <span class='result'>" . isEven($number) . "</span>";
+echo "The square of <strong>$urval</strong> is: <span class='result'>" . square($urval) . "</span><br>";
+echo "The number <strong>$urval</strong> is: <span class='result'>" . isEven($urval) . "</span>";
 echo "</div>";
 ?>
 
