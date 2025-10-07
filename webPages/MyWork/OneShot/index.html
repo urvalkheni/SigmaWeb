@@ -38,38 +38,171 @@
         height="200" width="200" alt="Test Image"/>-->
 <!DOCTYPE html>
 <html lang="en">
-    <body>
-        <h1>First Heading</h1>
-        <h2>Second Heading</h2>
-        <h3>Third Heading</h3>
-        <h4>Fourth Heading</h4>
-        <h5>Fifth Heading</h5>
-        <h6>Sixth Heading</h6>
-        <p>This is a test paragraph,<br>This is a new line</p>
-        <hr>
-        <pre>This is a test with preformatted text
-<hr>This is New line
-        </pre>
-        <a href="https://www.google.com">This is a test link</a>
-        <pre>
-<b>This is Bold Text</b>
-        
-<strong>This is Strong Text</strong>
-        
-<em>This is Emphasized Text</em>
-        
-<i>This is Italic Text</i>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFest Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TechFest 2025 Registration</h1>
+            <p>Join the biggest technology festival of the year!</p>
+        </header>
 
-<u>This is Underlined Text</u>
+        <main>
+            <form id="registrationForm" novalidate>
+                <!-- Full Name Field -->
+                <div class="field-group">
+                    <label for="fullName">Full Name *</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        required
+                        aria-describedby="fullName-error"
+                        placeholder="Enter your full name"
+                    >
+                    <span id="fullName-error" class="error-message" aria-live="polite"></span>
+                </div>
 
-This is Marked <mark>This is Important</mark>
-        Dont do this: <del>This is Deleted Text</del>
-        <ins>This is Inserted Text</ins>
+                <!-- Email Field -->
+                <div class="field-group">
+                    <label for="email">Email (.edu required) *</label>
+                    <div class="input-container">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required
+                            aria-describedby="email-error"
+                            placeholder="your.email@university.edu"
+                        >
+                        <div class="loading-spinner" id="email-spinner"></div>
+                    </div>
+                    <span id="email-error" class="error-message" aria-live="polite"></span>
+                </div>
 
-        <small>This is Small Text</small>
-        7<sup>3</sup>
-        H<sub>2</sub>O
-</pre>
-        
-    </body>
-    </html>
+                <!-- Phone Field -->
+                <div class="field-group">
+                    <label for="phone">Phone Number *</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        required
+                        aria-describedby="phone-error"
+                        placeholder="9876543210"
+                        maxlength="10"
+                    >
+                    <span id="phone-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- College ID Field -->
+                <div class="field-group">
+                    <label for="collegeId">College ID *</label>
+                    <div class="input-container">
+                        <input 
+                            type="text" 
+                            id="collegeId" 
+                            name="collegeId" 
+                            required
+                            aria-describedby="collegeId-error"
+                            placeholder="CSPIT-IT-2025-001"
+                        >
+                        <div class="verification-status" id="collegeId-status"></div>
+                    </div>
+                    <span id="collegeId-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Password Field -->
+                <div class="field-group">
+                    <label for="password">Password *</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        required
+                        aria-describedby="password-error password-strength"
+                        placeholder="Enter a strong password"
+                    >
+                    <div class="password-strength-meter">
+                        <div class="strength-bar" id="strengthBar"></div>
+                        <span class="strength-text" id="strengthText">Password strength</span>
+                    </div>
+                    <span id="password-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="field-group">
+                    <label for="confirmPassword">Confirm Password *</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        required
+                        aria-describedby="confirmPassword-error"
+                        placeholder="Confirm your password"
+                    >
+                    <span id="confirmPassword-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Track Selection -->
+                <div class="field-group">
+                    <label for="track">Preferred Track *</label>
+                    <select id="track" name="track" required aria-describedby="track-error">
+                        <option value="">Select a track</option>
+                        <option value="Web">Web Development</option>
+                        <option value="AI/ML">AI/ML</option>
+                        <option value="CyberSec">Cyber Security</option>
+                    </select>
+                    <div id="track-note" class="track-note" aria-live="polite"></div>
+                    <span id="track-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="field-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input 
+                            type="checkbox" 
+                            id="terms" 
+                            name="terms" 
+                            required
+                            aria-describedby="terms-error"
+                        >
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#" target="_blank">Terms & Conditions</a> *
+                    </label>
+                    <span id="terms-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="reset" id="resetBtn" class="btn btn-secondary">Reset Form</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Register</button>
+                </div>
+            </form>
+
+            <!-- Success Toast -->
+            <div id="successToast" class="toast" role="alert" aria-live="assertive">
+                <div class="toast-content">
+                    <span class="toast-icon">✓</span>
+                    <span class="toast-message">Registration successful!</span>
+                </div>
+            </div>
+
+            <!-- Registrants Section -->
+            <section class="registrants-section">
+                <div class="section-header">
+                    <h2>Registered Participants</h2>
+                    <button id="exportBtn" class="btn btn-outline">Export JSON</button>
+                </div>
+                <div id="registrantsList" class="registrants-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

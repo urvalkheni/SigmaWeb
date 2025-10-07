@@ -1,53 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>My Page</title>
-        <link rel="icon" href="https://cdn.openai.com/favicon-16x16.png">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Fair Registration</title>
+    <link rel="stylesheet" href="jobfair.css">
+</head>
 <body>
-    <h1 style="color: red; background-color: yellow;">This is a Chocolate Heading</h1>
-    <a href="https://www.example.com" target="_blank">Google</a>
-    <br>
-    <a href="mailto:example@example.com">send me a email</a>
-    <table>
-        <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Age</th>
-        </tr>
-        <tr>
-            <td>Urvak</td>
-            <td>Kheni</td>
-            <td>19</td>
-        </tr>
-        <tr>
-            <td>Heet</td>
-            <td>Mehta</td>
-            <td>21</td>
-        </tr>
-        <tr>
-            <td>Rahul</td>
-            <td>Mehta</td>
-            <td>22</td>
-        </tr>   
+    <div class="container">
+        <header>
+            <h1>Job Fair 2025 Registration</h1>
+            <p>Register now for career opportunities with top companies!</p>
+        </header>
 
-    </table>
-    <br>
-    <ul>
-        <li>Urvak Kheni - 19</li>
-        <li>Heet Mehta - 21</li>
-        <li>Rahul Mehta - 22</li>
-    </ul>
-    <br>
-    <ol>
-        <li>Urvak Kheni - 19</li>
-        <li>Heet Mehta - 21</li>
-        <li>Rahul Mehta - 22</li>
-    </ol>
-    <dl>
-        <dt>Urvak Kheni</dt>
-        <dd>This is Full Name</dd>
-    </dl>
+        <main>
+            <!-- Live Status Updates -->
+            <div class="status-indicators" aria-live="polite">
+                <div class="status-chip" id="identityStatus">
+                    <span class="status-label">Identity</span>
+                    <span class="status-badge invalid">Invalid</span>
+                </div>
+                <div class="status-chip" id="contactStatus">
+                    <span class="status-label">Contact</span>
+                    <span class="status-badge invalid">Invalid</span>
+                </div>
+                <div class="status-chip" id="addressStatus">
+                    <span class="status-label">Address</span>
+                    <span class="status-badge invalid">Invalid</span>
+                </div>
+                <div class="status-chip" id="academicStatus">
+                    <span class="status-label">Academic</span>
+                    <span class="status-badge invalid">Invalid</span>
+                </div>
+            </div>
+
+            <form id="jobFairForm" novalidate>
+                <!-- Identity Section -->
+                <section class="form-section" id="identitySection">
+                    <h2>Identity Information</h2>
+                    
+                    <div class="field-group">
+                        <label for="candidateName">Full Name *</label>
+                        <input 
+                            type="text" 
+                            id="candidateName" 
+                            name="candidateName" 
+                            required
+                            aria-describedby="candidateName-error"
+                            placeholder="Enter your full name"
+                        >
+                        <span id="candidateName-error" class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="username">Username *</label>
+                        <div class="input-container">
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                required
+                                aria-describedby="username-error username-suggestions"
+                                placeholder="lowercase letters/digits, 4-16 chars"
+                            >
+                            <div class="loading-spinner" id="username-spinner"></div>
+                            <div class="availability-status" id="username-status"></div>
+                        </div>
+                        <div id="username-suggestions" class="suggestions" aria-live="polite"></div>
+                        <span id="username-error" class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="password">Password *</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            aria-describedby="password-error password-strength"
+                            placeholder="Strong password required"
+                        >
+                        <div class="password-strength-meter">
+                            <div class="strength-bar" id="strengthBar"></div>
+                            <span class="strength-text" id="strengthText">Password strength</span>
+                            <div class="password-policy">
+                                <small>
+                                    Password must contain: 8+ characters, uppercase, lowercase, digit, special character (@#$%^&+=!)
+                                </small>
+                            </div>
+                        </div>
+                        <span id="password-error" class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            required
+                            aria-describedby="confirmPassword-error"
+                            placeholder="Confirm your password"
+                        >
+                        <span id="confirmPassword-error" class="error-message" aria-live="polite"></span>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section class="form-section" id="contactSection">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="field-group">
+                        <label for="email">Email Address *</label>
+                        <div class="input-container">
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                aria-describedby="email-error"
+                                placeholder="your.email@domain.com"
+                            >
+                            <div class="loading-spinner" id="email-spinner"></div>
+                        </div>
+                        <div class="email-badges" id="emailBadges">
+                            <span class="badge" id="mxBadge">MX Records: <span class="badge-status">Checking...</span></span>
+                            <span class="badge" id="disposableBadge">Disposable: <span class="badge-status">Checking...</span></span>
+                            <span class="badge" id="academicBadge">Academic: <span class="badge-status">Checking...</span></span>
+                        </div>
+                        <span id="email-error" class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="phone">Phone Number *</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            required
+                            aria-describedby="phone-error"
+                            placeholder="+91 9876543210 or 9876543210"
+                        >
+                        <span id="phone-error" class="error-message" aria-live="polite"></span>
+                    </div>
+                </section>
+
+                <!-- Address Section -->
+                <section class="form-section" id="addressSection">
+                    <h2>Address Information</h2>
+                    
+                    <div class="field-group">
+                        <label for="pincode">Pincode *</label>
+                        <div class="input-container">
+                            <input 
+                                type="text" 
+                                id="pincode" 
+                                name="pincode" 
+                                required
+                                aria-describedby="pincode-error"
+                                placeholder="6-digit pincode"
+                                maxlength="6"
+                            >
+                            <div class="loading-spinner" id="pincode-spinner"></div>
+                        </div>
+                        <span id="pincode-error" class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="city">City *</label>
+                        <input 
+                            type="text" 
+                            id="city" 
+                            name="city" 
+                            required
+                            aria-describedby="city-error"
+                            placeholder="City (auto-filled from pincode)"
+                        >
+                        <span id="city-error" class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="state">State *</label>
+                        <input 
+                            type="text" 
+                            id="state" 
+                            name="state" 
+                            required
+                            aria-describedby="state-error"
+                            placeholder="State (auto-filled from pincode)"
+                        >
+                        <span id="state-error" class="error-message" aria-live="polite"></span>
+                    </div>
+                </section>
+
+                <!-- Academic Section -->
+                <section class="form-section" id="academicSection">
+                    <h2>Academic Information</h2>
+                    
+                    <div class="field-group">
+                        <label for="graduationYear">Graduation Year *</label>
+                        <input 
+                            type="number" 
+                            id="graduationYear" 
+                            name="graduationYear" 
+                            required
+                            aria-describedby="graduationYear-error"
+                            placeholder="2020-2030"
+                            min="2020"
+                            max="2030"
+                        >
+                        <span id="graduationYear-error" class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="resumeUrl">Resume URL (HTTPS) *</label>
+                        <input 
+                            type="url" 
+                            id="resumeUrl" 
+                            name="resumeUrl" 
+                            required
+                            aria-describedby="resumeUrl-error"
+                            placeholder="https://drive.google.com/..."
+                        >
+                        <span id="resumeUrl-error" class="error-message" aria-live="polite"></span>
+                    </div>
+                </section>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" id="clearDraftBtn" class="btn btn-secondary">Clear Draft</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary" disabled>
+                        <span class="btn-text">Register</span>
+                        <div class="btn-spinner" id="submitSpinner"></div>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success/Error Messages -->
+            <div id="statusMessage" class="status-message" role="alert" aria-live="assertive"></div>
+
+            <!-- Preview Card -->
+            <section class="preview-section" id="previewSection" style="display: none;">
+                <h2>Registration Summary</h2>
+                <div class="preview-card" id="previewCard"></div>
+                <div class="confirmation-section" id="confirmationSection"></div>
+                <button type="button" id="newRegistrationBtn" class="btn btn-outline">New Registration</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="jobfair.js"></script>
+</body>
+</html>
     <br>
     <div style="color: aqua; background-color: red;">
         <h1>First Div</h1>
