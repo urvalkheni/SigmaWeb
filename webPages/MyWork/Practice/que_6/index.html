@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pincode Lookup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .auto-filled {
+            background-color: #e8f5e8;
+            border-color: #27ae60;
+        }
+
+        .error {
+            border-color: #e74c3c;
+        }
+
+        .info-box {
+            background-color: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            color: #1976d2;
+            font-size: 1.1rem;
+        }
+
+        .info-box p {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .result-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                margin: 20px auto;
+            }
+
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            input[type="text"] {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Address Form with Pincode Lookup</h1>
+        
+        <div class="info-box">
+            <h3>Available Test Pincodes:</h3>
+            <p><strong>400001</strong> - Mumbai, Maharashtra</p>
+            <p><strong>110001</strong> - Delhi, Delhi</p>
+            <p><strong>560001</strong> - Bangalore, Karnataka</p>
+        </div>
+
+        <form id="addressForm">
+            <div class="form-group">
+                <label for="pincode">Pincode:</label>
+                <input type="text" id="pincode" name="pincode" placeholder="Enter 6-digit pincode" maxlength="6" oninput="lookupPincode()">
+            </div>
+
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" placeholder="City will be auto-filled" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" placeholder="State will be auto-filled" readonly>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Form</button>
+        </form>
+
+        <div id="resultMessage" class="result-message"></div>
+    </div>
+
+    <script>
+        // JavaScript object with pincode data
+        const pincodeData = {
+            "400001": {
+                city: "Mumbai",
+                state: "Maharashtra"
+            },
+            "110001": {
+                city: "Delhi",
+                state: "Delhi"
+            },
+            "560001": {
+                city: "Bangalore",
+                state: "Karnataka"
+            }
+        };
+
+        function lookupPincode() {
+            const pincodeInput = document.getElementById('pincode');
+            const cityInput = document.getElementById('city');
+            const stateInput = document.getElementById('state');
+            const pincode = pincodeInput.value.trim();
+            
+            // Clear previous auto-fill styling
+            cityInput.classList.remove('auto-filled', 'error');
+            stateInput.classList.remove('auto-filled', 'error');
+            pincodeInput.classList.remove('error');
+            
+            // Clear city and state if pincode is less than 6 digits
+            if (pincode.length < 6) {
+                cityInput.value = '';
+                stateInput.value = '';
+                cityInput.placeholder = 'City will be auto-filled';
+                stateInput.placeholder = 'State will be auto-filled';
+                return;
+            }
+            
+            // Check if pincode is exactly 6 digits
+            if (pincode.length === 6) {
+                // Check if pincode exists in our data
+                if (pincodeData[pincode]) {
+                    // Auto-fill city and state
+                    cityInput.value = pincodeData[pincode].city;
+                    stateInput.value = pincodeData[pincode].state;
+                    
+                    // Add auto-filled styling
+                    cityInput.classList.add('auto-filled');
+                    stateInput.classList.add('auto-filled');
+                    
+                    // Update placeholders
+                    cityInput.placeholder = 'Auto-filled from pincode';
+                    stateInput.placeholder = 'Auto-filled from pincode';
+                    
+                } else {
+                    // Pincode not found
+                    alert('Pincode not found. Please check the pincode or enter city and state manually.');
+                    
+                    // Clear fields and add error styling
+                    cityInput.value = '';
+                    stateInput.value = '';
+                    pincodeInput.classList.add('error');
+                    cityInput.placeholder = 'Enter city manually';
+                    stateInput.placeholder = 'Enter state manually';
+                    
+                    // Make fields editable
+                    cityInput.removeAttribute('readonly');
+                    stateInput.removeAttribute('readonly');
+                }
+            }
+        }
+
+        // Alternative method using onblur event
+        function lookupPincodeOnBlur() {
+            const pincodeInput = document.getElementById('pincode');
+            const pincode = pincodeInput.value.trim();
+            
+            if (pincode.length === 6) {
+                if (pincodeData[pincode]) {
+                    document.getElementById('city').value = pincodeData[pincode].city;
+                    document.getElementById('state').value = pincodeData[pincode].state;
+                } else {
+                    alert('Pincode not found');
+                }
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('addressForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const pincode = document.getElementById('pincode').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const resultMessage = document.getElementById('resultMessage');
+            
+            // Simple validation
+            if (pincode === '' || city === '' || state === '') {
+                resultMessage.className = 'result-message error-message';
+                resultMessage.textContent = 'Please fill all fields before submitting.';
+                resultMessage.style.display = 'block';
+                return;
+            }
+            
+            if (pincode.length !== 6) {
+                resultMessage.className = 'result-message error-message';
+                resultMessage.textContent = 'Please enter a valid 6-digit pincode.';
+                resultMessage.style.display = 'block';
+                return;
+            }
+            
+            // Success message
+            resultMessage.className = 'result-message success';
+            resultMessage.textContent = `Form submitted successfully! Address: ${city}, ${state} - ${pincode}`;
+            resultMessage.style.display = 'block';
+            
+            // Optional: Reset form after 3 seconds
+            setTimeout(function() {
+                document.getElementById('addressForm').reset();
+                resultMessage.style.display = 'none';
+                document.getElementById('city').setAttribute('readonly', 'true');
+                document.getElementById('state').setAttribute('readonly', 'true');
+                document.getElementById('city').placeholder = 'City will be auto-filled';
+                document.getElementById('state').placeholder = 'State will be auto-filled';
+            }, 3000);
+        });
+
+        // Reset form function (optional)
+        function resetForm() {
+            document.getElementById('addressForm').reset();
+            document.getElementById('resultMessage').style.display = 'none';
+            
+            // Reset field states
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(function(input) {
+                input.classList.remove('auto-filled', 'error');
+            });
+            
+            document.getElementById('city').setAttribute('readonly', 'true');
+            document.getElementById('state').setAttribute('readonly', 'true');
+        }
+    </script>
+</body>
+</html>

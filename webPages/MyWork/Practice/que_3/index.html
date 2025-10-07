@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Section</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            margin: 0;
+            font-size: 18px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #2980b9;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active::after {
+            content: '−';
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-answer {
+            background-color: #ecf0f1;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            color: #555;
+            font-size: 16px;
+        }
+
+        /* Different colors for variety */
+        .faq-item:nth-child(2) .faq-question {
+            background-color: #e74c3c;
+        }
+
+        .faq-item:nth-child(2) .faq-question:hover {
+            background-color: #c0392b;
+        }
+
+        .faq-item:nth-child(3) .faq-question {
+            background-color: #27ae60;
+        }
+
+        .faq-item:nth-child(3) .faq-question:hover {
+            background-color: #229954;
+        }
+
+        .faq-item:nth-child(4) .faq-question {
+            background-color: #f39c12;
+        }
+
+        .faq-item:nth-child(4) .faq-question:hover {
+            background-color: #e67e22;
+        }
+
+        .faq-item:nth-child(5) .faq-question {
+            background-color: #9b59b6;
+        }
+
+        .faq-item:nth-child(5) .faq-question:hover {
+            background-color: #8e44ad;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .faq-question {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .faq-answer.active {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What are the admission requirements for undergraduate programs?
+            </div>
+            <div class="faq-answer">
+                <p>For undergraduate programs, students must have completed their 12th grade with a minimum of 60% marks in relevant subjects. Additionally, students need to pass the entrance examination conducted by the college and submit all required documents including mark sheets, transfer certificate, and character certificate.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                How can I apply for scholarships?
+            </div>
+            <div class="faq-answer">
+                <p>Scholarship applications can be submitted through the student portal during the specified application period. Students need to maintain a minimum GPA of 3.5 and demonstrate financial need. Merit-based scholarships are also available for top-performing students in each department.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                What is the procedure for course registration?
+            </div>
+            <div class="faq-answer">
+                <p>Course registration is done online through the student portal at the beginning of each semester. Students must first meet with their academic advisor to plan their course schedule, then log into the portal during the registration window to select and confirm their courses.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Are there any hostel facilities available?
+            </div>
+            <div class="faq-answer">
+                <p>Yes, the college provides separate hostel facilities for male and female students. Each hostel room is furnished with basic amenities including bed, study table, chair, and storage space. Mess facilities provide three meals a day with both vegetarian and non-vegetarian options.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                How can I access the library resources?
+            </div>
+            <div class="faq-answer">
+                <p>Students can access the library using their student ID card during operating hours (8 AM to 8 PM on weekdays, 9 AM to 5 PM on weekends). The library offers physical books, digital resources, research databases, and computer facilities. Students can borrow up to 5 books for 14 days.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFAQ(element) {
+            // Get the answer div (next sibling)
+            const answer = element.nextElementSibling;
+            
+            // Toggle the active class on question
+            element.classList.toggle('active');
+            
+            // Toggle the active class on answer
+            answer.classList.toggle('active');
+            
+            // Close other open FAQ items (optional - for accordion effect)
+            const allQuestions = document.querySelectorAll('.faq-question');
+            const allAnswers = document.querySelectorAll('.faq-answer');
+            
+            allQuestions.forEach(function(question) {
+                if (question !== element) {
+                    question.classList.remove('active');
+                }
+            });
+            
+            allAnswers.forEach(function(ans) {
+                if (ans !== answer) {
+                    ans.classList.remove('active');
+                }
+            });
+        }
+
+        // Alternative method using event delegation (more advanced)
+        /*
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqContainer = document.querySelector('.container');
+            
+            faqContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('faq-question')) {
+                    const answer = e.target.nextElementSibling;
+                    
+                    // Toggle current FAQ
+                    e.target.classList.toggle('active');
+                    answer.classList.toggle('active');
+                    
+                    // Close other FAQs
+                    const allQuestions = document.querySelectorAll('.faq-question');
+                    const allAnswers = document.querySelectorAll('.faq-answer');
+                    
+                    allQuestions.forEach(function(question) {
+                        if (question !== e.target) {
+                            question.classList.remove('active');
+                        }
+                    });
+                    
+                    allAnswers.forEach(function(ans) {
+                        if (ans !== answer) {
+                            ans.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        });
+        */
+    </script>
+</body>
+</html>
