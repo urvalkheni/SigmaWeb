@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kheni Urval - Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Student Info Header -->
+    <div class="student-info">
+        <p><strong>Student ID:</strong> 24CE55 | <strong>Name:</strong> Kheni Urval</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>Kheni Urval</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#about" aria-label="About section">About</a></li>
+                <li><a href="#skills" aria-label="Skills section">Skills</a></li>
+                <li><a href="#projects" aria-label="Projects section">Projects</a></li>
+                <li><a href="#contact" aria-label="Contact section">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Computer Engineering Student | Web Developer</p>
+            <p class="student-id">ID: 24CE55</p>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm <strong>Kheni Urval</strong> (Student ID: 24CE55), a passionate Computer Engineering student specializing in web development and programming.</p>
+                    <p>I enjoy creating innovative solutions and learning new technologies to build meaningful projects that make a difference.</p>
+                    <p>Currently pursuing my degree in Computer Engineering with a focus on full-stack web development.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>2+</h3>
+                        <p>Years Learning</p>
+                    </div>
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p>Projects</p>
+                    </div>
+                    <div class="stat">
+                        <h3>5+</h3>
+                        <p>Technologies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h2>Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript ES6+</li>
+                        <li>Responsive Design</li>
+                        <li>DOM Manipulation</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>PHP</li>
+                        <li>MySQL</li>
+                        <li>Session Management</li>
+                        <li>File Handling</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools & Others</h3>
+                    <ul>
+                        <li>Git & GitHub</li>
+                        <li>VS Code</li>
+                        <li>Database Design</li>
+                        <li>Problem Solving</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Quiz Application</h3>
+                    <p>Interactive JavaScript quiz with score tracking and review functionality.</p>
+                    <div class="tech-stack">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Todo Application</h3>
+                    <p>Dynamic todo app with localStorage persistence and filtering options.</p>
+                    <div class="tech-stack">
+                        <span>DOM</span>
+                        <span>Events</span>
+                        <span>localStorage</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>PHP Guestbook</h3>
+                    <p>Server-side guestbook with file I/O and data sanitization.</p>
+                    <div class="tech-stack">
+                        <span>PHP</span>
+                        <span>File I/O</span>
+                        <span>Security</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Student CRUD System</h3>
+                    <p>Complete CRUD operations with MySQL database and PHP backend.</p>
+                    <div class="tech-stack">
+                        <span>PHP</span>
+                        <span>MySQL</span>
+                        <span>PDO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Student:</strong> Kheni Urval</p>
+                    <p><strong>ID:</strong> 24CE55</p>
+                    <p><strong>Course:</strong> WDF: ITUE203</p>
+                    <p><strong>Email:</strong> kheni.urval@example.com</p>
+                    <p><strong>Phone:</strong> +91 9876543210</p>
+                </div>
+                <form class="contact-form" action="#" method="post">
+                    <h3>Send Message</h3>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Kheni Urval (24CE55) - WDF Programming Assignment</p>
+        </div>
+    </footer>
+</body>
+</html>

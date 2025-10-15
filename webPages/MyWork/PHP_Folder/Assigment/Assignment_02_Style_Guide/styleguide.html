@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Guide - Kheni Urval (24CE55)</title>
+    <link rel="stylesheet" href="styleguide.css">
+</head>
+<body>
+    <!-- Student Info Header -->
+    <header class="student-header">
+        <div class="container">
+            <h1>Color & Typography Style Guide</h1>
+            <p><strong>Student:</strong> Kheni Urval | <strong>ID:</strong> 24CE55 | <strong>Course:</strong> WDF: ITUE203</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="style-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#colors">Color Palette</a></li>
+                <li><a href="#typography">Typography</a></li>
+                <li><a href="#headings">Headings</a></li>
+                <li><a href="#text">Text Styles</a></li>
+                <li><a href="#examples">Examples</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Color Palette Section -->
+        <section id="colors" class="section">
+            <div class="container">
+                <h2>Color Palette</h2>
+                <p class="section-desc">Carefully selected colors with proper contrast ratios for accessibility (WCAG 2.1 AA compliant)</p>
+                
+                <div class="color-section">
+                    <h3>Primary Colors</h3>
+                    <div class="color-grid">
+                        <div class="color-card">
+                            <div class="color-swatch primary-main"></div>
+                            <div class="color-info">
+                                <h4>Primary Blue</h4>
+                                <p class="color-hex">#2563eb</p>
+                                <p class="color-rgb">RGB: 37, 99, 235</p>
+                                <p class="color-usage">Buttons, Links, Headers</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch primary-light"></div>
+                            <div class="color-info">
+                                <h4>Primary Light</h4>
+                                <p class="color-hex">#3b82f6</p>
+                                <p class="color-rgb">RGB: 59, 130, 246</p>
+                                <p class="color-usage">Hover states, Highlights</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch primary-dark"></div>
+                            <div class="color-info">
+                                <h4>Primary Dark</h4>
+                                <p class="color-hex">#1d4ed8</p>
+                                <p class="color-rgb">RGB: 29, 78, 216</p>
+                                <p class="color-usage">Active states, Depth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h3>Secondary Colors</h3>
+                    <div class="color-grid">
+                        <div class="color-card">
+                            <div class="color-swatch secondary-main"></div>
+                            <div class="color-info">
+                                <h4>Secondary Purple</h4>
+                                <p class="color-hex">#7c3aed</p>
+                                <p class="color-rgb">RGB: 124, 58, 237</p>
+                                <p class="color-usage">Accents, Special elements</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch accent-green"></div>
+                            <div class="color-info">
+                                <h4>Success Green</h4>
+                                <p class="color-hex">#10b981</p>
+                                <p class="color-rgb">RGB: 16, 185, 129</p>
+                                <p class="color-usage">Success messages, Confirmations</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch accent-red"></div>
+                            <div class="color-info">
+                                <h4>Error Red</h4>
+                                <p class="color-hex">#ef4444</p>
+                                <p class="color-rgb">RGB: 239, 68, 68</p>
+                                <p class="color-usage">Errors, Warnings</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h3>Neutral Colors</h3>
+                    <div class="color-grid">
+                        <div class="color-card">
+                            <div class="color-swatch neutral-white"></div>
+                            <div class="color-info">
+                                <h4>Pure White</h4>
+                                <p class="color-hex">#ffffff</p>
+                                <p class="color-rgb">RGB: 255, 255, 255</p>
+                                <p class="color-usage">Backgrounds, Cards</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch neutral-light"></div>
+                            <div class="color-info">
+                                <h4>Light Gray</h4>
+                                <p class="color-hex">#f8fafc</p>
+                                <p class="color-rgb">RGB: 248, 250, 252</p>
+                                <p class="color-usage">Page backgrounds</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch neutral-medium"></div>
+                            <div class="color-info">
+                                <h4>Medium Gray</h4>
+                                <p class="color-hex">#64748b</p>
+                                <p class="color-rgb">RGB: 100, 116, 139</p>
+                                <p class="color-usage">Secondary text</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch neutral-dark"></div>
+                            <div class="color-info">
+                                <h4>Dark Gray</h4>
+                                <p class="color-hex">#1e293b</p>
+                                <p class="color-rgb">RGB: 30, 41, 59</p>
+                                <p class="color-usage">Primary text, Headers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section id="typography" class="section">
+            <div class="container">
+                <h2>Typography System</h2>
+                <p class="section-desc">Font stacks optimized for readability and performance across all devices</p>
+                
+                <div class="typography-showcase">
+                    <div class="font-family-card">
+                        <h3>Primary Font: Inter</h3>
+                        <p class="font-stack">font-family: 'Inter', system-ui, -apple-system, sans-serif;</p>
+                        <div class="font-example primary-font">
+                            <p>The quick brown fox jumps over the lazy dog</p>
+                            <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+                            <p>abcdefghijklmnopqrstuvwxyz</p>
+                            <p>0123456789 !@#$%^&*()</p>
+                        </div>
+                        <p class="font-usage"><strong>Usage:</strong> Headers, UI elements, primary content</p>
+                    </div>
+                    
+                    <div class="font-family-card">
+                        <h3>Secondary Font: Georgia</h3>
+                        <p class="font-stack">font-family: 'Georgia', 'Times New Roman', serif;</p>
+                        <div class="font-example secondary-font">
+                            <p>The quick brown fox jumps over the lazy dog</p>
+                            <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+                            <p>abcdefghijklmnopqrstuvwxyz</p>
+                            <p>0123456789 !@#$%^&*()</p>
+                        </div>
+                        <p class="font-usage"><strong>Usage:</strong> Long-form content, articles, quotes</p>
+                    </div>
+                    
+                    <div class="font-family-card">
+                        <h3>Monospace Font: Fira Code</h3>
+                        <p class="font-stack">font-family: 'Fira Code', 'Consolas', monospace;</p>
+                        <div class="font-example mono-font">
+                            <p>The quick brown fox jumps over the lazy dog</p>
+                            <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+                            <p>abcdefghijklmnopqrstuvwxyz</p>
+                            <p>0123456789 !@#$%^&*() !== === =></p>
+                        </div>
+                        <p class="font-usage"><strong>Usage:</strong> Code snippets, technical content</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Headings Section -->
+        <section id="headings" class="section">
+            <div class="container">
+                <h2>Heading Scale (H1-H6)</h2>
+                <p class="section-desc">Consistent type scale with proper hierarchy and spacing</p>
+                
+                <div class="headings-showcase">
+                    <div class="heading-example">
+                        <h1 class="demo-h1">H1: Main Page Title - 24CE55</h1>
+                        <p class="heading-specs">48px | 1.1 line-height | 600 weight | 0.02em tracking</p>
+                    </div>
+                    
+                    <div class="heading-example">
+                        <h2 class="demo-h2">H2: Section Heading - Kheni Urval</h2>
+                        <p class="heading-specs">36px | 1.2 line-height | 600 weight | 0.01em tracking</p>
+                    </div>
+                    
+                    <div class="heading-example">
+                        <h3 class="demo-h3">H3: Subsection Heading - WDF ITUE203</h3>
+                        <p class="heading-specs">28px | 1.3 line-height | 600 weight | normal tracking</p>
+                    </div>
+                    
+                    <div class="heading-example">
+                        <h4 class="demo-h4">H4: Component Heading - Assignment</h4>
+                        <p class="heading-specs">24px | 1.4 line-height | 600 weight | normal tracking</p>
+                    </div>
+                    
+                    <div class="heading-example">
+                        <h5 class="demo-h5">H5: Small Heading - Style Guide</h5>
+                        <p class="heading-specs">20px | 1.4 line-height | 500 weight | normal tracking</p>
+                    </div>
+                    
+                    <div class="heading-example">
+                        <h6 class="demo-h6">H6: Micro Heading - Details</h6>
+                        <p class="heading-specs">16px | 1.5 line-height | 500 weight | 0.05em tracking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Styles Section -->
+        <section id="text" class="section">
+            <div class="container">
+                <h2>Text Styles & Components</h2>
+                <p class="section-desc">Various text styles for different content types and contexts</p>
+                
+                <div class="text-styles-grid">
+                    <div class="text-style-card">
+                        <h3>Body Text</h3>
+                        <p class="body-large">Large body text (18px) - Student ID: 24CE55. This is used for introductory paragraphs and important content that needs emphasis.</p>
+                        <p class="body-regular">Regular body text (16px) - Name: Kheni Urval. This is the standard text size for most content, optimized for readability across devices.</p>
+                        <p class="body-small">Small body text (14px) - Course: WDF ITUE203. Used for secondary information, captions, and less prominent content.</p>
+                    </div>
+                    
+                    <div class="text-style-card">
+                        <h3>Special Text</h3>
+                        <p class="text-lead">Lead text - Introducing the comprehensive style guide created by Kheni Urval for WDF programming assignments.</p>
+                        <p class="text-caption">Caption text - Figure 1: Color harmony demonstration</p>
+                        <p class="text-code">Code text - console.log('Hello from 24CE55');</p>
+                        <blockquote class="text-quote">"Good design is obvious. Great design is transparent." - Joe Sparano</blockquote>
+                    </div>
+                    
+                    <div class="text-style-card">
+                        <h3>Interactive Text</h3>
+                        <p><a href="#" class="link-primary">Primary Link - Portfolio</a></p>
+                        <p><a href="#" class="link-secondary">Secondary Link - About Kheni</a></p>
+                        <p><a href="#" class="link-external">External Link - University ↗</a></p>
+                        <p class="text-muted">Muted text - Additional information</p>
+                        <p class="text-success">Success text - Assignment completed!</p>
+                        <p class="text-error">Error text - Please check your input</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples" class="section">
+            <div class="container">
+                <h2>Real-world Examples</h2>
+                <p class="section-desc">Practical applications of the style guide in various UI components</p>
+                
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <h3>Article Card</h3>
+                        <div class="card-demo">
+                            <h4>Understanding Web Development</h4>
+                            <p class="card-meta">By Kheni Urval (24CE55) • 5 min read</p>
+                            <p>Web development combines creativity with technical skills to build engaging digital experiences. This article explores fundamental concepts...</p>
+                            <a href="#" class="card-link">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h3>Button Variations</h3>
+                        <div class="button-demo">
+                            <button class="btn btn-primary">Primary Action</button>
+                            <button class="btn btn-secondary">Secondary Action</button>
+                            <button class="btn btn-outline">Outline Button</button>
+                            <button class="btn btn-text">Text Button</button>
+                        </div>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h3>Form Elements</h3>
+                        <div class="form-demo">
+                            <div class="form-group">
+                                <label>Student Name</label>
+                                <input type="text" placeholder="Enter your name" value="Kheni Urval">
+                            </div>
+                            <div class="form-group">
+                                <label>Student ID</label>
+                                <input type="text" placeholder="Enter your ID" value="24CE55">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Style Guide by Kheni Urval (24CE55) - WDF: ITUE203 Assignment</p>
+        </div>
+    </footer>
+</body>
+</html>
