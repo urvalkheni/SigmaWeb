@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz - Kheni Urval (24CE55)</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <!-- Student Info Header -->
+    <header class="student-header">
+        <div class="container">
+            <h1>Interactive JavaScript Quiz</h1>
+            <p><strong>Student:</strong> Kheni Urval | <strong>ID:</strong> 24CE55 | <strong>Course:</strong> WDF: ITUE203</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Quiz Container -->
+            <div class="quiz-container">
+                <!-- Start Screen -->
+                <div class="quiz-screen" id="start-screen">
+                    <div class="start-content">
+                        <h2>JavaScript Fundamentals Quiz</h2>
+                        <p>Test your knowledge with 5 multiple-choice questions</p>
+                        <div class="student-info">
+                            <p><strong>Created by:</strong> Kheni Urval</p>
+                            <p><strong>Student ID:</strong> 24CE55</p>
+                        </div>
+                        <button class="btn btn-primary" id="start-btn">Start Quiz</button>
+                    </div>
+                </div>
+
+                <!-- Quiz Screen -->
+                <div class="quiz-screen hidden" id="quiz-screen">
+                    <!-- Progress Bar -->
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <span class="progress-text" id="progress-text">Question 1 of 5</span>
+                    </div>
+
+                    <!-- Question Container -->
+                    <div class="question-container">
+                        <h3 id="question-text">Question will appear here</h3>
+                        <div class="options-container" id="options-container">
+                            <!-- Options will be dynamically generated -->
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" id="prev-btn" disabled>Previous</button>
+                        <button class="btn btn-primary" id="next-btn" disabled>Next</button>
+                    </div>
+                </div>
+
+                <!-- Results Screen -->
+                <div class="quiz-screen hidden" id="results-screen">
+                    <div class="results-content">
+                        <h2>Quiz Completed!</h2>
+                        <div class="score-display">
+                            <div class="score-circle">
+                                <span id="score-percentage">0%</span>
+                            </div>
+                            <p id="score-text">You scored 0 out of 5</p>
+                        </div>
+
+                        <!-- Results Breakdown -->
+                        <div class="results-breakdown" id="results-breakdown">
+                            <!-- Results will be dynamically generated -->
+                        </div>
+
+                        <div class="results-actions">
+                            <button class="btn btn-primary" id="review-btn">Review Answers</button>
+                            <button class="btn btn-secondary" id="restart-btn">Restart Quiz</button>
+                        </div>
+
+                        <div class="student-credit">
+                            <p>Quiz developed by <strong>Kheni Urval (24CE55)</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Screen -->
+                <div class="quiz-screen hidden" id="review-screen">
+                    <div class="review-content">
+                        <h2>Answer Review</h2>
+                        <div class="review-questions" id="review-questions">
+                            <!-- Review content will be dynamically generated -->
+                        </div>
+                        <div class="review-actions">
+                            <button class="btn btn-primary" id="back-to-results">Back to Results</button>
+                            <button class="btn btn-secondary" id="restart-from-review">Take Quiz Again</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Interactive Quiz by Kheni Urval (24CE55) - WDF: ITUE203 Assignment</p>
+        </div>
+    </footer>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
