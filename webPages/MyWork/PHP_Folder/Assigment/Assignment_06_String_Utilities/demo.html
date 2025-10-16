@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Utilities Demo - Kheni Urval (24CE055)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .main-content {
+            padding: 20px 0;
+        }
+        
+        .demo-section {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .section-header h2 {
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        .test-case {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        
+        .test-input {
+            margin-bottom: 10px;
+        }
+        
+        .test-input label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .test-input input, .test-input textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        
+        .test-input input:focus, .test-input textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        .test-output {
+            background: white;
+            padding: 10px;
+            border-radius: 3px;
+            border-left: 3px solid #28a745;
+            margin-top: 10px;
+        }
+        
+        .test-output strong {
+            color: #28a745;
+        }
+        
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+        
+        .function-info {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            border-left: 3px solid #007bff;
+        }
+        
+        .student-credit {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        pre {
+            background: #333;
+            color: #f5f5f5;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>String Utilities Library Demo</h1>
+            <p><strong>Student:</strong> Kheni Urval | <strong>ID:</strong> 24CE055 | <strong>Course:</strong> WDF: ITUE203</p>
+            <p>Interactive testing page for string manipulation functions</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <div class="student-credit">
+                <h3>📚 String Utilities Library</h3>
+                <p>A collection of pure JavaScript functions for common string operations</p>
+                <p><strong>Created by:</strong> Kheni Urval (Student ID: 24CE055)</p>
+            </div>
+
+            <!-- Title Case Function -->
+            <div class="demo-section">
+                <div class="section-header">
+                    <h2>1. Title Case Converter</h2>
+                    <p>Converts text to title case (first letter of each word capitalized)</p>
+                </div>
+                <div class="section-content">
+                    <div class="function-info">
+                        <strong>Function:</strong> <code>toTitleCase(str)</code><br>
+                        <strong>Purpose:</strong> Converts string to title case format
+                    </div>
+                    <div class="test-case">
+                        <div class="test-input">
+                            <label for="titlecase-input">Input Text:</label>
+                            <input type="text" id="titlecase-input" placeholder="enter your text here" value="hello world from kheni urval">
+                        </div>
+                        <button class="btn" onclick="testTitleCase()">Convert to Title Case</button>
+                        <div class="test-output" id="titlecase-output">
+                            <strong>Output:</strong> <span id="titlecase-result">Click button to test</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trim Extra Spaces Function -->
+            <div class="demo-section">
+                <div class="section-header">
+                    <h2>2. Extra Spaces Trimmer</h2>
+                    <p>Removes extra spaces between words and trims leading/trailing spaces</p>
+                </div>
+                <div class="section-content">
+                    <div class="function-info">
+                        <strong>Function:</strong> <code>trimExtraSpaces(str)</code><br>
+                        <strong>Purpose:</strong> Normalizes whitespace in strings
+                    </div>
+                    <div class="test-case">
+                        <div class="test-input">
+                            <label for="trimspaces-input">Input Text:</label>
+                            <input type="text" id="trimspaces-input" value="  hello    world   from    student   24CE055  ">
+                        </div>
+                        <button class="btn" onclick="testTrimSpaces()">Trim Extra Spaces</button>
+                        <div class="test-output" id="trimspaces-output">
+                            <strong>Output:</strong> "<span id="trimspaces-result">Click button to test</span>"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Frequency Function -->
+            <div class="demo-section">
+                <div class="section-header">
+                    <h2>3. Word Frequency Counter</h2>
+                    <p>Counts occurrences of each word in the text</p>
+                </div>
+                <div class="section-content">
+                    <div class="function-info">
+                        <strong>Function:</strong> <code>wordFrequency(str)</code><br>
+                        <strong>Purpose:</strong> Analyzes word usage patterns in text
+                    </div>
+                    <div class="test-case">
+                        <div class="test-input">
+                            <label for="wordfreq-input">Input Text:</label>
+                            <textarea id="wordfreq-input" rows="4" placeholder="Enter text to analyze...">The student Kheni Urval with ID 24CE055 is learning web development. Web development is interesting and student enjoys learning.</textarea>
+                        </div>
+                        <button class="btn" onclick="testWordFrequency()">Count Word Frequency</button>
+                        <div class="test-output" id="wordfreq-output">
+                            <strong>Word Count:</strong>
+                            <pre id="wordfreq-result">Click button to test</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Masking Function -->
+            <div class="demo-section">
+                <div class="section-header">
+                    <h2>4. Email Address Masker</h2>
+                    <p>Masks email addresses for privacy protection</p>
+                </div>
+                <div class="section-content">
+                    <div class="function-info">
+                        <strong>Function:</strong> <code>maskEmail(email)</code><br>
+                        <strong>Purpose:</strong> Protects email privacy by masking characters
+                    </div>
+                    <div class="test-case">
+                        <div class="test-input">
+                            <label for="maskemail-input">Email Address:</label>
+                            <input type="email" id="maskemail-input" value="kheni.urval@example.com" placeholder="Enter email address">
+                        </div>
+                        <button class="btn" onclick="testMaskEmail()">Mask Email</button>
+                        <div class="test-output" id="maskemail-output">
+                            <strong>Masked Email:</strong> <span id="maskemail-result">Click button to test</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Functions Grid -->
+            <div class="grid">
+                
+                <!-- Capitalize First -->
+                <div class="demo-section">
+                    <div class="section-header">
+                        <h2>5. Capitalize First Letter</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="test-input">
+                            <input type="text" id="capfirst-input" value="kheni urval student" placeholder="Enter text">
+                        </div>
+                        <button class="btn" onclick="testCapitalizeFirst()">Capitalize First</button>
+                        <div class="test-output">
+                            <strong>Output:</strong> <span id="capfirst-result">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character Counter -->
+                <div class="demo-section">
+                    <div class="section-header">
+                        <h2>6. Character Counter</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="test-input">
+                            <input type="text" id="charcount-input" value="Student ID: 24CE055" placeholder="Enter text">
+                        </div>
+                        <button class="btn" onclick="testCountChars()">Count Characters</button>
+                        <div class="test-output">
+                            <strong>Characters (no spaces):</strong> <span id="charcount-result">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reverse Words -->
+                <div class="demo-section">
+                    <div class="section-header">
+                        <h2>7. Reverse Words</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="test-input">
+                            <input type="text" id="reverse-input" value="Hello from Kheni Urval" placeholder="Enter text">
+                        </div>
+                        <button class="btn" onclick="testReverseWords()">Reverse Words</button>
+                        <div class="test-output">
+                            <strong>Reversed:</strong> <span id="reverse-result">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Get Initials -->
+                <div class="demo-section">
+                    <div class="section-header">
+                        <h2>8. Extract Initials</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="test-input">
+                            <input type="text" id="initials-input" value="Kheni Urval" placeholder="Enter full name">
+                        </div>
+                        <button class="btn" onclick="testGetInitials()">Get Initials</button>
+                        <div class="test-output">
+                            <strong>Initials:</strong> <span id="initials-result">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Truncate Text -->
+                <div class="demo-section">
+                    <div class="section-header">
+                        <h2>9. Text Truncator</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="test-input">
+                            <input type="text" id="truncate-input" value="This is a long text created by student Kheni Urval with ID 24CE055 for testing truncation functionality" placeholder="Enter long text">
+                            <input type="number" id="truncate-length" value="30" min="5" max="100" style="width: 100px; margin-top: 5px;" placeholder="Max length">
+                        </div>
+                        <button class="btn" onclick="testTruncate()">Truncate Text</button>
+                        <div class="test-output">
+                            <strong>Truncated:</strong> <span id="truncate-result">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Palindrome Checker -->
+                <div class="demo-section">
+                    <div class="section-header">
+                        <h2>10. Palindrome Checker</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="test-input">
+                            <input type="text" id="palindrome-input" value="A man a plan a canal Panama" placeholder="Enter text">
+                        </div>
+                        <button class="btn" onclick="testPalindrome()">Check Palindrome</button>
+                        <div class="test-output">
+                            <strong>Is Palindrome:</strong> <span id="palindrome-result">-</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- All Tests Section -->
+            <div class="demo-section">
+                <div class="section-header">
+                    <h2>🧪 Run All Tests</h2>
+                    <p>Execute all functions with predefined test cases</p>
+                </div>
+                <div class="section-content">
+                    <button class="btn" onclick="runAllTests()" style="font-size: 1.2rem; padding: 15px 30px;">Run Complete Test Suite</button>
+                    <div class="test-output" id="all-tests-output" style="margin-top: 1rem;">
+                        <strong>Test Results:</strong>
+                        <pre id="all-tests-result">Click button to run all tests</pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer style="background: var(--dark); color: white; text-align: center; padding: 2rem 0; margin-top: 2rem;">
+        <div class="container">
+            <p>&copy; 2025 String Utilities Library by Kheni Urval (24CE055) - WDF: ITUE203 Assignment</p>
+        </div>
+    </footer>
+
+    <script src="string-utils.js"></script>
+    <script>
+        // Test functions for each utility
+        function testTitleCase() {
+            const input = document.getElementById('titlecase-input').value;
+            const result = StringUtils.toTitleCase(input);
+            document.getElementById('titlecase-result').textContent = result;
+        }
+
+        function testTrimSpaces() {
+            const input = document.getElementById('trimspaces-input').value;
+            const result = StringUtils.trimExtraSpaces(input);
+            document.getElementById('trimspaces-result').textContent = result;
+        }
+
+        function testWordFrequency() {
+            const input = document.getElementById('wordfreq-input').value;
+            const result = StringUtils.wordFrequency(input);
+            document.getElementById('wordfreq-result').textContent = JSON.stringify(result, null, 2);
+        }
+
+        function testMaskEmail() {
+            const input = document.getElementById('maskemail-input').value;
+            const result = StringUtils.maskEmail(input);
+            document.getElementById('maskemail-result').textContent = result;
+        }
+
+        function testCapitalizeFirst() {
+            const input = document.getElementById('capfirst-input').value;
+            const result = StringUtils.capitalizeFirst(input);
+            document.getElementById('capfirst-result').textContent = result;
+        }
+
+        function testCountChars() {
+            const input = document.getElementById('charcount-input').value;
+            const result = StringUtils.countChars(input);
+            document.getElementById('charcount-result').textContent = result;
+        }
+
+        function testReverseWords() {
+            const input = document.getElementById('reverse-input').value;
+            const result = StringUtils.reverseWords(input);
+            document.getElementById('reverse-result').textContent = result;
+        }
+
+        function testGetInitials() {
+            const input = document.getElementById('initials-input').value;
+            const result = StringUtils.getInitials(input);
+            document.getElementById('initials-result').textContent = result;
+        }
+
+        function testTruncate() {
+            const input = document.getElementById('truncate-input').value;
+            const length = parseInt(document.getElementById('truncate-length').value);
+            const result = StringUtils.truncate(input, length);
+            document.getElementById('truncate-result').textContent = result;
+        }
+
+        function testPalindrome() {
+            const input = document.getElementById('palindrome-input').value;
+            const result = StringUtils.isPalindrome(input);
+            document.getElementById('palindrome-result').textContent = result ? 'Yes ✅' : 'No ❌';
+        }
+
+        function runAllTests() {
+            const testCases = [
+                { name: 'toTitleCase', input: 'hello world student 24CE055', expected: 'Hello World Student 24CE055' },
+                { name: 'trimExtraSpaces', input: '  hello    world  ', expected: 'hello world' },
+                { name: 'maskEmail', input: 'kheni.urval@example.com', expected: 'k*********l@example.com' },
+                { name: 'capitalizeFirst', input: 'HELLO WORLD', expected: 'Hello world' },
+                { name: 'countChars', input: 'Student ID: 24CE055', expected: 13 },
+                { name: 'reverseWords', input: 'Kheni Urval Student', expected: 'Student Urval Kheni' },
+                { name: 'getInitials', input: 'Kheni Urval', expected: 'KU' },
+                { name: 'truncate', input: 'This is a long text by student 24CE055', length: 20, expected: 'This is a long te...' },
+                { name: 'isPalindrome', input: 'racecar', expected: true }
+            ];
+
+            let results = 'Test Results by Kheni Urval (24CE055):\n\n';
+            
+            testCases.forEach(test => {
+                try {
+                    let actual;
+                    if (test.name === 'truncate') {
+                        actual = StringUtils[test.name](test.input, test.length);
+                    } else {
+                        actual = StringUtils[test.name](test.input);
+                    }
+                    
+                    const passed = JSON.stringify(actual) === JSON.stringify(test.expected);
+                    results += `${test.name}: ${passed ? '✅ PASS' : '❌ FAIL'}\n`;
+                    results += `  Input: "${test.input}"\n`;
+                    results += `  Expected: ${JSON.stringify(test.expected)}\n`;
+                    results += `  Actual: ${JSON.stringify(actual)}\n\n`;
+                } catch (error) {
+                    results += `${test.name}: ❌ ERROR - ${error.message}\n\n`;
+                }
+            });
+
+            document.getElementById('all-tests-result').textContent = results;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('String Utilities Demo loaded by Kheni Urval (24CE055)');
+        });
+    </script>
+</body>
+</html>
