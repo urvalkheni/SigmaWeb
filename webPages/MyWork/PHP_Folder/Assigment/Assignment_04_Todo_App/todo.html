@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App - Kheni Urval (24CE55)</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <!-- Student Info Header -->
+    <header class="student-header">
+        <div class="container">
+            <h1>Dynamic Todo Application</h1>
+            <p><strong>Student:</strong> Kheni Urval | <strong>ID:</strong> 24CE55 | <strong>Course:</strong> WDF: ITUE203</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="todo-app">
+                <!-- Add Todo Section -->
+                <div class="add-todo-section">
+                    <h2>Add New Task</h2>
+                    <div class="input-group">
+                        <input type="text" id="todo-input" placeholder="Enter your task..." maxlength="100">
+                        <button class="btn btn-primary" id="add-btn">Add Task</button>
+                    </div>
+                    <p class="student-info">Created by Kheni Urval (24CE55)</p>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <h3>Filter Tasks</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="active">Active</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                    <div class="stats">
+                        <span id="total-count">0 total</span>
+                        <span id="active-count">0 active</span>
+                        <span id="completed-count">0 completed</span>
+                    </div>
+                </div>
+
+                <!-- Todo List Section -->
+                <div class="todo-list-section">
+                    <div class="todo-header">
+                        <h3>Your Tasks</h3>
+                        <button class="btn btn-secondary" id="clear-completed">Clear Completed</button>
+                    </div>
+                    
+                    <div class="todo-list" id="todo-list">
+                        <!-- Todos will be dynamically added here -->
+                    </div>
+                    
+                    <div class="empty-state" id="empty-state">
+                        <div class="empty-icon">📝</div>
+                        <h3>No tasks yet!</h3>
+                        <p>Add your first task above to get started.</p>
+                    </div>
+                </div>
+
+                <!-- Actions Section -->
+                <div class="actions-section">
+                    <button class="btn btn-outline" id="export-btn">Export Tasks</button>
+                    <button class="btn btn-outline" id="clear-all-btn">Clear All</button>
+                    <div class="storage-info">
+                        <small>Tasks are automatically saved to your browser's local storage</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Todo App by Kheni Urval (24CE55) - WDF: ITUE203 Assignment</p>
+        </div>
+    </footer>
+
+    <script src="todo.js"></script>
+</body>
+</html>
