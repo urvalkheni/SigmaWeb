@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Events Renderer - Assignment 07</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .student-info {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .assignment-info {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Controls Styles */
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            background: #f8f9fa;
+            color: #333;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .filter-btn:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .search-sort {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-input, .sort-select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .search-input:focus, .sort-select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .refresh-btn {
+            padding: 8px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .refresh-btn:hover {
+            background: #218838;
+        }
+
+        .event-count {
+            font-weight: bold;
+            color: #333;
+            background: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        /* Events Container */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Event Card Styles */
+        .event-card {
+            background: white;
+            border-radius: 5px;
+            padding: 20px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #007bff;
+        }
+
+        .event-card.workshop::before {
+            background: #dc3545;
+        }
+
+        .event-card.lecture::before {
+            background: #ffc107;
+        }
+
+        .event-card.seminar::before {
+            background: #6f42c1;
+        }
+
+        .event-card.tutorial::before {
+            background: #28a745;
+        }
+
+        .event-card.presentation::before {
+            background: #e91e63;
+        }
+
+        .event-card:hover {
+            border-color: #007bff;
+        }
+
+        .event-card-content {
+            display: flex;
+            gap: 15px;
+        }
+
+        .event-date {
+            text-align: center;
+            min-width: 70px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px 5px;
+        }
+
+        .event-date .day {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .event-date .weekday {
+            display: block;
+            font-size: 11px;
+            color: #999;
+            margin-top: 3px;
+        }
+
+        .event-content {
+            flex: 1;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .event-category {
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .event-category.workshop {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .event-category.lecture {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .event-category.seminar {
+            background: #e2e3f3;
+            color: #383d41;
+        }
+
+        .event-category.tutorial {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .event-category.presentation {
+            background: #f5c6cb;
+            color: #721c24;
+        }
+
+        .event-description {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .event-details {
+            margin-top: 10px;
+        }
+
+        .event-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .info-item .icon {
+            font-size: 13px;
+        }
+
+        .event-organizer {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* Monthly View */
+        .monthly-view {
+            background: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .monthly-view h2 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .month-group {
+            margin-bottom: 25px;
+        }
+
+        .month-title {
+            color: #333;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .month-events {
+            display: grid;
+            gap: 8px;
+        }
+
+        .month-event {
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 3px;
+            align-items: center;
+        }
+
+        .month-event:hover {
+            background: #e9ecef;
+        }
+
+        .month-event .event-date {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .month-event .event-title {
+            font-weight: normal;
+            color: #333;
+        }
+
+        .month-event .event-category {
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            background: #007bff;
+            color: white;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .close-modal {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+        }
+
+        .close-modal:hover {
+            opacity: 0.8;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .event-detail-info {
+            margin-bottom: 15px;
+        }
+
+        .event-detail-info p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-detail-info strong {
+            min-width: 100px;
+            color: #333;
+        }
+
+        .event-description-full h4 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .event-description-full p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Error and No Events Styles */
+        .no-events, .error-message {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .no-events h3, .error-message h3 {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .no-events p, .error-message p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .retry-btn {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .retry-btn:hover {
+            background: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .controls-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .search-sort {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .event-date {
+                align-self: flex-start;
+                min-width: auto;
+            }
+
+            .event-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .event-info {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .month-event {
+                grid-template-columns: 1fr;
+                gap: 5px;
+                text-align: center;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .loading::after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>📅 JSON Events Renderer</h1>
+            <div class="student-info">
+                👨‍💻 Student: Kheni Urval (24CE055)
+            </div>
+            <div class="assignment-info">
+                Assignment 07: JSON Events Renderer | Course: WDF: ITUE203 | Medium-Level Implementation
+            </div>
+        </div>
+
+        <!-- Controls Section -->
+        <div class="controls">
+            <div class="controls-row">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Events</button>
+                    <button class="filter-btn" data-filter="workshop">Workshops</button>
+                    <button class="filter-btn" data-filter="lecture">Lectures</button>
+                    <button class="filter-btn" data-filter="seminar">Seminars</button>
+                    <button class="filter-btn" data-filter="tutorial">Tutorials</button>
+                    <button class="filter-btn" data-filter="presentation">Presentations</button>
+                </div>
+
+                <div class="search-sort">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="🔍 Search events..." 
+                        class="search-input"
+                    >
+                    <select id="sortSelect" class="sort-select">
+                        <option value="date">Sort by Date</option>
+                        <option value="title">Sort by Title</option>
+                        <option value="category">Sort by Category</option>
+                        <option value="attendees">Sort by Attendees</option>
+                    </select>
+                    <button id="refreshBtn" class="refresh-btn">🔄 Refresh</button>
+                </div>
+
+                <div id="eventCount" class="event-count">
+                    Loading events...
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Container -->
+        <div id="eventsContainer" class="events-container">
+            <div class="loading"></div>
+        </div>
+
+        <!-- Monthly View -->
+        <div class="monthly-view">
+            <h2>📊 Events by Month</h2>
+            <div id="monthlyView">
+                <div class="loading"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer" style="text-align: center; padding: 20px; color: rgba(0, 0, 0, 0.8);">
+            <p>🎓 JSON Events Renderer - Assignment 07 by Kheni Urval (24CE055)</p>
+            <p>📚 Course: WDF: ITUE203 | Medium-Level JavaScript Implementation</p>
+        </div>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div id="modalContent">
+                <!-- Modal content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="events-renderer.js"></script>
+    <script>
+        // Additional functionality for demonstration
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('JSON Events Renderer loaded by Kheni Urval (24CE055)');
+            
+            // Add export functionality
+            const exportBtn = document.createElement('button');
+            exportBtn.textContent = '📥 Export Events';
+            exportBtn.className = 'refresh-btn';
+            exportBtn.style.marginLeft = '10px';
+            exportBtn.addEventListener('click', () => {
+                if (window.eventsRenderer) {
+                    window.eventsRenderer.exportEvents();
+                }
+            });
+            
+            // Add export button to controls
+            const searchSortDiv = document.querySelector('.search-sort');
+            if (searchSortDiv) {
+                searchSortDiv.appendChild(exportBtn);
+            }
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                // Ctrl/Cmd + F to focus search
+                if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                    e.preventDefault();
+                    const searchInput = document.getElementById('searchInput');
+                    if (searchInput) {
+                        searchInput.focus();
+                    }
+                }
+                
+                // Escape to close modal
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('eventModal');
+                    if (modal && modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                    }
+                }
+            });
+
+            // Add tooltips to buttons
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.title = `Filter events by ${btn.textContent.toLowerCase()}`;
+            });
+
+            const refreshBtn = document.getElementById('refreshBtn');
+            if (refreshBtn) {
+                refreshBtn.title = 'Reload events from JSON file';
+            }
+
+            const sortSelect = document.getElementById('sortSelect');
+            if (sortSelect) {
+                sortSelect.title = 'Change sort order for events';
+            }
+
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.title = 'Search events by title, description, or organizer';
+            }
+
+            // Add animation delay for staggered card appearance
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.event-card');
+                cards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

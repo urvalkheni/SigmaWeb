@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "title": "Web Development Workshop",
+    "description": "Learn modern web development techniques with HTML5, CSS3, and JavaScript ES6+",
+    "date": "2025-01-15",
+    "time": "09:00",
+    "location": "Computer Lab A",
+    "category": "workshop",
+    "organizer": "Kheni Urval (24CE055)",
+    "attendees": 25
+  },
+  {
+    "id": 2,
+    "title": "JavaScript Fundamentals",
+    "description": "Introduction to JavaScript programming for beginners",
+    "date": "2025-01-22",
+    "time": "14:00",
+    "location": "Lecture Hall 1",
+    "category": "lecture",
+    "organizer": "IT Department",
+    "attendees": 45
+  },
+  {
+    "id": 3,
+    "title": "PHP Backend Development",
+    "description": "Server-side programming with PHP and MySQL database integration",
+    "date": "2025-02-05",
+    "time": "10:30",
+    "location": "Computer Lab B",
+    "category": "workshop",
+    "organizer": "Kheni Urval (24CE055)",
+    "attendees": 20
+  },
+  {
+    "id": 4,
+    "title": "Database Design Seminar",
+    "description": "Best practices for relational database design and optimization",
+    "date": "2025-02-12",
+    "time": "15:30",
+    "location": "Conference Room",
+    "category": "seminar",
+    "organizer": "Database Faculty",
+    "attendees": 30
+  },
+  {
+    "id": 5,
+    "title": "Responsive Web Design",
+    "description": "Creating mobile-friendly websites using CSS Grid and Flexbox",
+    "date": "2025-02-18",
+    "time": "11:00",
+    "location": "Computer Lab A",
+    "category": "workshop",
+    "organizer": "Kheni Urval (24CE055)",
+    "attendees": 35
+  },
+  {
+    "id": 6,
+    "title": "Git Version Control",
+    "description": "Introduction to Git and GitHub for collaborative development",
+    "date": "2025-03-08",
+    "time": "13:00",
+    "location": "Computer Lab C",
+    "category": "tutorial",
+    "organizer": "DevOps Team",
+    "attendees": 40
+  },
+  {
+    "id": 7,
+    "title": "API Development with REST",
+    "description": "Building RESTful APIs using modern web technologies",
+    "date": "2025-03-15",
+    "time": "09:30",
+    "location": "Computer Lab B",
+    "category": "workshop",
+    "organizer": "Kheni Urval (24CE055)",
+    "attendees": 22
+  },
+  {
+    "id": 8,
+    "title": "Frontend Frameworks Overview",
+    "description": "Comparison of popular JavaScript frameworks: React, Vue, Angular",
+    "date": "2025-03-22",
+    "time": "16:00",
+    "location": "Lecture Hall 2",
+    "category": "lecture",
+    "organizer": "IT Department",
+    "attendees": 50
+  },
+  {
+    "id": 9,
+    "title": "Security in Web Applications",
+    "description": "Common security vulnerabilities and how to prevent them",
+    "date": "2025-04-10",
+    "time": "14:30",
+    "location": "Conference Room",
+    "category": "seminar",
+    "organizer": "Security Team",
+    "attendees": 28
+  },
+  {
+    "id": 10,
+    "title": "Project Showcase",
+    "description": "Students present their final web development projects",
+    "date": "2025-04-25",
+    "time": "10:00",
+    "location": "Main Auditorium",
+    "category": "presentation",
+    "organizer": "Kheni Urval (24CE055)",
+    "attendees": 100
+  },
+  {
+    "id": 11,
+    "title": "Advanced CSS Techniques",
+    "description": "Animations, transitions, and modern CSS features",
+    "date": "2025-01-28",
+    "time": "12:00",
+    "location": "Computer Lab A",
+    "category": "workshop",
+    "organizer": "CSS Expert",
+    "attendees": 18
+  },
+  {
+    "id": 12,
+    "title": "Node.js Introduction",
+    "description": "Server-side JavaScript development with Node.js",
+    "date": "2025-05-05",
+    "time": "11:30",
+    "location": "Computer Lab C",
+    "category": "tutorial",
+    "organizer": "Backend Team",
+    "attendees": 32
+  }
+]

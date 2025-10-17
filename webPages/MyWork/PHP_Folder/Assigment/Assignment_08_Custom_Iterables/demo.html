@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Iterable Objects Demo - Assignment 08</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .student-info {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .assignment-info {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Demo Sections */
+        .demo-section {
+            background: white;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .demo-header {
+            background: #007bff;
+            color: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .demo-header h2 {
+            margin: 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .demo-content {
+            padding: 20px;
+        }
+
+        .demo-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .demo-input {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            min-width: 100px;
+        }
+
+        .demo-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .demo-button {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .demo-button.secondary {
+            background: #95a5a6;
+        }
+
+        .demo-button.secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .demo-output {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .demo-output.error {
+            background: #fdf2f2;
+            border-color: #e74c3c;
+            color: #c0392b;
+        }
+
+        .demo-output.success {
+            background: #f0f9f0;
+            border-color: #27ae60;
+            color: #229954;
+        }
+
+        /* Grid Layout for Demos */
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+        }
+
+        /* Matrix Display */
+        .matrix-display {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .matrix-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .matrix-cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            font-weight: 500;
+        }
+
+        /* Tree Display */
+        .tree-display {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .tree-node {
+            margin-left: 20px;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .tree-node::before {
+            content: '├── ';
+            color: #7f8c8d;
+            font-family: monospace;
+        }
+
+        .tree-node:last-child::before {
+            content: '└── ';
+        }
+
+        /* Console Output */
+        .console-output {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .console-line {
+            margin-bottom: 5px;
+        }
+
+        .console-line.log {
+            color: #3498db;
+        }
+
+        .console-line.error {
+            color: #e74c3c;
+        }
+
+        .console-line.info {
+            color: #27ae60;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .demos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .demo-input {
+                width: 100%;
+            }
+        }
+
+        /* Animation Classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .demo-section {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Highlight Animation */
+        @keyframes highlight {
+            0% { background-color: rgba(52, 152, 219, 0.1); }
+            50% { background-color: rgba(52, 152, 219, 0.3); }
+            100% { background-color: rgba(52, 152, 219, 0.1); }
+        }
+
+        .highlight {
+            animation: highlight 1s ease;
+        }
+
+        /* Loading State */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: ' ⏳';
+        }
+
+        /* Tab System */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>🔄 Custom Iterable Objects</h1>
+            <div class="student-info">
+                👨‍💻 Student: Kheni Urval (24CE055)
+            </div>
+            <div class="assignment-info">
+                Assignment 08: Custom Iterable Objects | Course: WDF: ITUE203 | Medium-Level Implementation
+            </div>
+        </div>
+
+        <div class="demos-grid">
+            <!-- Range Demo -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2>📏 Range Iterator</h2>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-controls">
+                        <input type="number" id="rangeStart" class="demo-input" placeholder="Start" value="1">
+                        <input type="number" id="rangeEnd" class="demo-input" placeholder="End" value="10">
+                        <input type="number" id="rangeStep" class="demo-input" placeholder="Step" value="1">
+                        <button onclick="demonstrateRange()" class="demo-button">Create Range</button>
+                        <button onclick="rangeOperations()" class="demo-button secondary">Operations</button>
+                    </div>
+                    <div id="rangeOutput" class="demo-output"></div>
+                </div>
+            </div>
+
+            <!-- Collection Demo -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2>📦 Collection Iterator</h2>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-controls">
+                        <input type="text" id="collectionItem" class="demo-input" placeholder="Add item">
+                        <button onclick="addToCollection()" class="demo-button">Add Item</button>
+                        <button onclick="collectionOperations()" class="demo-button secondary">Operations</button>
+                        <button onclick="clearCollection()" class="demo-button secondary">Clear</button>
+                    </div>
+                    <div id="collectionOutput" class="demo-output"></div>
+                </div>
+            </div>
+
+            <!-- Matrix Demo -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2>🔢 Matrix Iterator</h2>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-controls">
+                        <input type="number" id="matrixRows" class="demo-input" placeholder="Rows" value="3" min="1" max="5">
+                        <input type="number" id="matrixCols" class="demo-input" placeholder="Columns" value="3" min="1" max="5">
+                        <button onclick="createMatrix()" class="demo-button">Create Matrix</button>
+                        <button onclick="fillMatrix()" class="demo-button secondary">Fill Random</button>
+                    </div>
+                    <div id="matrixDisplay" class="matrix-display"></div>
+                    <div id="matrixOutput" class="demo-output"></div>
+                </div>
+            </div>
+
+            <!-- Fibonacci Demo -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2>🌀 Fibonacci Sequence</h2>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-controls">
+                        <input type="number" id="fibLimit" class="demo-input" placeholder="Limit" value="10" min="1" max="20">
+                        <button onclick="generateFibonacci()" class="demo-button">Generate</button>
+                        <button onclick="fibonacciOperations()" class="demo-button secondary">Analysis</button>
+                    </div>
+                    <div id="fibonacciOutput" class="demo-output"></div>
+                </div>
+            </div>
+
+            <!-- Tree Demo -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2>🌳 Tree Iterator</h2>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-controls">
+                        <input type="text" id="treeNode" class="demo-input" placeholder="Node value">
+                        <button onclick="addTreeNode()" class="demo-button">Add Node</button>
+                        <button onclick="traverseTree()" class="demo-button secondary">Traverse</button>
+                        <button onclick="resetTree()" class="demo-button secondary">Reset</button>
+                    </div>
+                    <div id="treeDisplay" class="tree-display"></div>
+                    <div id="treeOutput" class="demo-output"></div>
+                </div>
+            </div>
+
+            <!-- Utility Functions Demo -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2>🛠️ Utility Functions</h2>
+                </div>
+                <div class="demo-content">
+                    <div class="tabs">
+                        <button class="tab active" onclick="showTab('utils-basic')">Basic Utils</button>
+                        <button class="tab" onclick="showTab('utils-advanced')">Advanced Utils</button>
+                        <button class="tab" onclick="showTab('utils-chain')">Chaining</button>
+                    </div>
+                    
+                    <div id="utils-basic" class="tab-content active">
+                        <div class="demo-controls">
+                            <button onclick="demonstrateTake()" class="demo-button">Take/Skip</button>
+                            <button onclick="demonstrateEnumerate()" class="demo-button">Enumerate</button>
+                            <button onclick="demonstrateCount()" class="demo-button">Count/All/Any</button>
+                        </div>
+                    </div>
+                    
+                    <div id="utils-advanced" class="tab-content">
+                        <div class="demo-controls">
+                            <button onclick="demonstrateZip()" class="demo-button">Zip Iterables</button>
+                            <button onclick="demonstrateChain()" class="demo-button">Chain Iterables</button>
+                        </div>
+                    </div>
+                    
+                    <div id="utils-chain" class="tab-content">
+                        <div class="demo-controls">
+                            <button onclick="demonstrateComplexChaining()" class="demo-button">Complex Operations</button>
+                            <button onclick="demonstratePerformance()" class="demo-button secondary">Performance Test</button>
+                        </div>
+                    </div>
+                    
+                    <div id="utilsOutput" class="demo-output"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Output -->
+        <div class="demo-section">
+            <div class="demo-header">
+                <h2>💻 Console Output</h2>
+            </div>
+            <div class="demo-content">
+                <div class="demo-controls">
+                    <button onclick="clearConsole()" class="demo-button secondary">Clear Console</button>
+                    <button onclick="runAllDemos()" class="demo-button">Run All Demos</button>
+                </div>
+                <div id="consoleOutput" class="console-output"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer" style="text-align: center; padding: 20px; color: black;">
+            <p>🎓 Custom Iterable Objects - Assignment 08 by Kheni Urval (24CE055)</p>
+            <p>📚 Course: WDF: ITUE203 | Medium-Level JavaScript Implementation</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="iterable.js"></script>
+    <script>
+        // Global variables for demo state
+        let currentCollection = new Collection();
+        let currentMatrix = null;
+        let currentTree = new Tree('Root');
+        let consoleLines = [];
+
+        // Console logging override
+        const originalLog = console.log;
+        const originalError = console.error;
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addConsoleOutput('log', args.join(' '));
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addConsoleOutput('error', args.join(' '));
+        };
+
+        function addConsoleOutput(type, message) {
+            consoleLines.push({ type, message, timestamp: new Date().toLocaleTimeString() });
+            updateConsoleDisplay();
+        }
+
+        function updateConsoleDisplay() {
+            const output = document.getElementById('consoleOutput');
+            output.innerHTML = consoleLines.map(line => 
+                `<div class="console-line ${line.type}">[${line.timestamp}] ${line.message}</div>`
+            ).join('');
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function clearConsole() {
+            consoleLines = [];
+            updateConsoleDisplay();
+        }
+
+        // Range Demo Functions
+        function demonstrateRange() {
+            const start = parseInt(document.getElementById('rangeStart').value) || 1;
+            const end = parseInt(document.getElementById('rangeEnd').value) || 10;
+            const step = parseInt(document.getElementById('rangeStep').value) || 1;
+            
+            try {
+                const range = new Range(start, end, step);
+                const output = document.getElementById('rangeOutput');
+                
+                let result = `Range created: ${range.toString()}\n`;
+                result += `Size: ${range.size}\n`;
+                result += `Values: [${range.toArray().join(', ')}]\n\n`;
+                
+                // Demonstrate for...of loop
+                result += 'For...of iteration:\n';
+                for (const value of range) {
+                    result += `${value} `;
+                    if (result.split('\n').pop().length > 50) {
+                        result += '\n';
+                    }
+                }
+                result += '\n\n';
+                
+                // Demonstrate spread operator
+                result += `Spread operator: [${[...range].join(', ')}]\n`;
+                
+                // Contains check
+                const testValue = Math.floor((start + end) / 2);
+                result += `Contains ${testValue}: ${range.contains(testValue)}\n`;
+                
+                output.textContent = result;
+                output.className = 'demo-output success';
+                console.log(`Range demo completed: ${start} to ${end} step ${step}`);
+            } catch (error) {
+                document.getElementById('rangeOutput').textContent = `Error: ${error.message}`;
+                document.getElementById('rangeOutput').className = 'demo-output error';
+                console.error('Range demo error:', error.message);
+            }
+        }
+
+        function rangeOperations() {
+            const start = parseInt(document.getElementById('rangeStart').value) || 1;
+            const end = parseInt(document.getElementById('rangeEnd').value) || 10;
+            const step = parseInt(document.getElementById('rangeStep').value) || 1;
+            
+            try {
+                const range = new Range(start, end, step);
+                const output = document.getElementById('rangeOutput');
+                
+                let result = `Range Operations for ${range.toString()}:\n\n`;
+                
+                // Map operation
+                const doubled = range.map(x => x * 2);
+                result += `Doubled: [${doubled.join(', ')}]\n`;
+                
+                // Filter operation
+                const evens = range.filter(x => x % 2 === 0);
+                result += `Even numbers: [${evens.join(', ')}]\n`;
+                
+                // Reduce operation
+                const sum = range.reduce((acc, val) => acc + val, 0);
+                result += `Sum: ${sum}\n`;
+                
+                // Combined operations
+                const processedValues = range
+                    .map(x => x * x)
+                    .filter(x => x < 100)
+                    .slice(0, 5);
+                result += `Squares < 100 (first 5): [${processedValues.join(', ')}]\n`;
+                
+                output.textContent = result;
+                output.className = 'demo-output success';
+                console.log('Range operations completed');
+            } catch (error) {
+                document.getElementById('rangeOutput').textContent = `Error: ${error.message}`;
+                document.getElementById('rangeOutput').className = 'demo-output error';
+                console.error('Range operations error:', error.message);
+            }
+        }
+
+        // Collection Demo Functions
+        function addToCollection() {
+            const item = document.getElementById('collectionItem').value.trim();
+            if (item) {
+                currentCollection.add(item);
+                document.getElementById('collectionItem').value = '';
+                updateCollectionDisplay();
+                console.log(`Added "${item}" to collection`);
+            }
+        }
+
+        function updateCollectionDisplay() {
+            const output = document.getElementById('collectionOutput');
+            let result = `Collection (size: ${currentCollection.size}):\n`;
+            result += `Items: [${currentCollection.toArray().join(', ')}]\n\n`;
+            
+            result += 'For...of iteration:\n';
+            for (const item of currentCollection) {
+                result += `"${item}" `;
+            }
+            result += '\n\n';
+            
+            result += `Is empty: ${currentCollection.isEmpty}\n`;
+            result += `First item: ${currentCollection.first()}\n`;
+            result += `Last item: ${currentCollection.last()}\n`;
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+        }
+
+        function collectionOperations() {
+            const output = document.getElementById('collectionOutput');
+            
+            if (currentCollection.isEmpty) {
+                // Add sample data
+                ['apple', 'banana', 'cherry', 'date', 'elderberry'].forEach(item => {
+                    currentCollection.add(item);
+                });
+            }
+            
+            let result = `Collection Operations:\n\n`;
+            
+            // Filter operation
+            const longNames = currentCollection.filter(item => item.length > 5);
+            result += `Items longer than 5 chars: [${longNames.toArray().join(', ')}]\n`;
+            
+            // Map operation
+            const upperCase = currentCollection.map(item => item.toUpperCase());
+            result += `Uppercase: [${upperCase.toArray().join(', ')}]\n`;
+            
+            // Find operation
+            const found = currentCollection.find(item => item.startsWith('c'));
+            result += `First item starting with 'c': ${found}\n`;
+            
+            // Reduce operation
+            const concatenated = currentCollection.reduce((acc, item) => acc + item + '-', '');
+            result += `Concatenated: ${concatenated.slice(0, -1)}\n`;
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Collection operations completed');
+        }
+
+        function clearCollection() {
+            currentCollection.clear();
+            updateCollectionDisplay();
+            console.log('Collection cleared');
+        }
+
+        // Matrix Demo Functions
+        function createMatrix() {
+            const rows = parseInt(document.getElementById('matrixRows').value) || 3;
+            const cols = parseInt(document.getElementById('matrixCols').value) || 3;
+            
+            try {
+                currentMatrix = new Matrix(rows, cols, 0);
+                displayMatrix();
+                
+                const output = document.getElementById('matrixOutput');
+                let result = `Matrix created (${rows}x${cols}):\n\n`;
+                
+                // Show iteration
+                result += 'Matrix iteration (row by row):\n';
+                const values = [...currentMatrix];
+                result += `[${values.join(', ')}]\n\n`;
+                
+                result += 'Matrix as 2D array:\n';
+                result += currentMatrix.toString();
+                
+                output.textContent = result;
+                output.className = 'demo-output success';
+                console.log(`Matrix created: ${rows}x${cols}`);
+            } catch (error) {
+                document.getElementById('matrixOutput').textContent = `Error: ${error.message}`;
+                document.getElementById('matrixOutput').className = 'demo-output error';
+                console.error('Matrix creation error:', error.message);
+            }
+        }
+
+        function fillMatrix() {
+            if (!currentMatrix) {
+                createMatrix();
+            }
+            
+            // Fill with random values
+            for (let i = 0; i < currentMatrix.rows; i++) {
+                for (let j = 0; j < currentMatrix.cols; j++) {
+                    currentMatrix.set(i, j, Math.floor(Math.random() * 10));
+                }
+            }
+            
+            displayMatrix();
+            
+            const output = document.getElementById('matrixOutput');
+            let result = `Matrix filled with random values:\n\n`;
+            
+            // Show operations
+            result += 'Matrix values:\n';
+            result += currentMatrix.toString() + '\n\n';
+            
+            result += 'For...of iteration:\n';
+            result += `[${[...currentMatrix].join(', ')}]\n\n`;
+            
+            // Row and column operations
+            result += `First row: [${currentMatrix.getRow(0).join(', ')}]\n`;
+            result += `First column: [${currentMatrix.getCol(0).join(', ')}]\n`;
+            
+            // Map operation
+            const doubled = currentMatrix.map(val => val * 2);
+            result += '\nDoubled matrix:\n';
+            result += doubled.toString();
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Matrix filled with random values');
+        }
+
+        function displayMatrix() {
+            if (!currentMatrix) return;
+            
+            const display = document.getElementById('matrixDisplay');
+            let html = '';
+            
+            for (let i = 0; i < currentMatrix.rows; i++) {
+                html += '<div class="matrix-row">';
+                for (let j = 0; j < currentMatrix.cols; j++) {
+                    html += `<div class="matrix-cell">${currentMatrix.get(i, j)}</div>`;
+                }
+                html += '</div>';
+            }
+            
+            display.innerHTML = html;
+        }
+
+        // Fibonacci Demo Functions
+        function generateFibonacci() {
+            const limit = parseInt(document.getElementById('fibLimit').value) || 10;
+            
+            try {
+                const fib = new FibonacciSequence(limit);
+                const output = document.getElementById('fibonacciOutput');
+                
+                let result = `Fibonacci sequence (limit: ${limit}):\n\n`;
+                
+                // Show values
+                const values = fib.toArray();
+                result += `Values: [${values.join(', ')}]\n\n`;
+                
+                // Show for...of iteration
+                result += 'For...of iteration:\n';
+                for (const value of fib) {
+                    result += `${value} `;
+                }
+                result += '\n\n';
+                
+                // Show spread operator
+                result += `Spread operator: [${[...fib].join(', ')}]\n`;
+                
+                output.textContent = result;
+                output.className = 'demo-output success';
+                console.log(`Fibonacci sequence generated: ${limit} numbers`);
+            } catch (error) {
+                document.getElementById('fibonacciOutput').textContent = `Error: ${error.message}`;
+                document.getElementById('fibonacciOutput').className = 'demo-output error';
+                console.error('Fibonacci generation error:', error.message);
+            }
+        }
+
+        function fibonacciOperations() {
+            const limit = parseInt(document.getElementById('fibLimit').value) || 10;
+            
+            try {
+                const fib = new FibonacciSequence(limit);
+                const output = document.getElementById('fibonacciOutput');
+                
+                let result = `Fibonacci Analysis (${limit} numbers):\n\n`;
+                
+                const values = fib.toArray();
+                result += `Values: [${values.join(', ')}]\n\n`;
+                
+                // Statistics
+                const sum = values.reduce((a, b) => a + b, 0);
+                const max = Math.max(...values);
+                const min = Math.min(...values);
+                const avg = sum / values.length;
+                
+                result += `Sum: ${sum}\n`;
+                result += `Average: ${avg.toFixed(2)}\n`;
+                result += `Min: ${min}, Max: ${max}\n\n`;
+                
+                // Even/odd analysis
+                const evens = values.filter(n => n % 2 === 0);
+                const odds = values.filter(n => n % 2 === 1);
+                result += `Even numbers: [${evens.join(', ')}]\n`;
+                result += `Odd numbers: [${odds.join(', ')}]\n\n`;
+                
+                // Ratio analysis (golden ratio approximation)
+                if (values.length > 2) {
+                    const ratios = [];
+                    for (let i = 2; i < values.length; i++) {
+                        const ratio = values[i] / values[i - 1];
+                        ratios.push(ratio.toFixed(6));
+                    }
+                    result += `Consecutive ratios: [${ratios.join(', ')}]\n`;
+                    result += `Approaching golden ratio: ${(1 + Math.sqrt(5)) / 2}\n`;
+                }
+                
+                output.textContent = result;
+                output.className = 'demo-output success';
+                console.log('Fibonacci analysis completed');
+            } catch (error) {
+                document.getElementById('fibonacciOutput').textContent = `Error: ${error.message}`;
+                document.getElementById('fibonacciOutput').className = 'demo-output error';
+                console.error('Fibonacci analysis error:', error.message);
+            }
+        }
+
+        // Tree Demo Functions
+        function addTreeNode() {
+            const value = document.getElementById('treeNode').value.trim();
+            if (value) {
+                currentTree.addChild(value);
+                document.getElementById('treeNode').value = '';
+                updateTreeDisplay();
+                console.log(`Added node "${value}" to tree`);
+            }
+        }
+
+        function updateTreeDisplay() {
+            const display = document.getElementById('treeDisplay');
+            let html = `<div class="tree-node" style="margin-left: 0;">Root: ${currentTree.root.value}</div>`;
+            
+            currentTree.root.children.forEach((child, index) => {
+                html += `<div class="tree-node">Child ${index + 1}: ${child.value}</div>`;
+            });
+            
+            display.innerHTML = html;
+        }
+
+        function traverseTree() {
+            const output = document.getElementById('treeOutput');
+            
+            let result = `Tree Traversal:\n\n`;
+            
+            // Depth-first (default iterator)
+            result += 'Depth-First Traversal:\n';
+            const depthFirst = [...currentTree];
+            result += `[${depthFirst.join(', ')}]\n\n`;
+            
+            // Breadth-first
+            result += 'Breadth-First Traversal:\n';
+            const breadthFirst = [...currentTree.breadthFirst()];
+            result += `[${breadthFirst.join(', ')}]\n\n`;
+            
+            // For...of iteration
+            result += 'For...of iteration (depth-first):\n';
+            for (const value of currentTree) {
+                result += `"${value}" `;
+            }
+            result += '\n\n';
+            
+            // Tree structure
+            result += 'Tree structure:\n';
+            result += currentTree.toString();
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Tree traversal completed');
+        }
+
+        function resetTree() {
+            currentTree = new Tree('Root');
+            updateTreeDisplay();
+            document.getElementById('treeOutput').textContent = '';
+            console.log('Tree reset to root only');
+        }
+
+        // Utility Functions Demo
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function demonstrateTake() {
+            const output = document.getElementById('utilsOutput');
+            
+            let result = 'Take and Skip Operations:\n\n';
+            
+            // Create a range for testing
+            const range = new Range(1, 20);
+            
+            result += `Original range: [${range.toArray().join(', ')}]\n\n`;
+            
+            // Take operations
+            const first5 = IterableUtils.take(range, 5);
+            result += `Take first 5: [${first5.join(', ')}]\n`;
+            
+            const first10 = IterableUtils.take(range, 10);
+            result += `Take first 10: [${first10.join(', ')}]\n\n`;
+            
+            // Skip operations
+            const skip5 = IterableUtils.skip(range, 5);
+            result += `Skip first 5: [${skip5.join(', ')}]\n`;
+            
+            const skip10 = IterableUtils.skip(range, 10);
+            result += `Skip first 10: [${skip10.join(', ')}]\n\n`;
+            
+            // Enumerate
+            result += 'Enumerate Operation:\n';
+            const enumerated = IterableUtils.enumerate(IterableUtils.take(range, 5));
+            for (const [index, value] of enumerated) {
+                result += `${index}: ${value} `;
+            }
+            result += '\n';
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Take/Skip/Enumerate demo completed');
+        }
+
+        function demonstrateEnumerate() {
+            const output = document.getElementById('utilsOutput');
+            
+            let result = 'Enumerate Operations:\n\n';
+            
+            // Test with different iterables
+            const fruits = new Collection(['apple', 'banana', 'cherry']);
+            const range = new Range(10, 15);
+            
+            result += 'Enumerate Collection:\n';
+            for (const [index, value] of IterableUtils.enumerate(fruits)) {
+                result += `${index}: "${value}"\n`;
+            }
+            result += '\n';
+            
+            result += 'Enumerate Range:\n';
+            for (const [index, value] of IterableUtils.enumerate(range)) {
+                result += `${index}: ${value}\n`;
+            }
+            result += '\n';
+            
+            result += 'Enumerate with Array destructuring:\n';
+            const enumArray = [...IterableUtils.enumerate(IterableUtils.take(range, 3))];
+            result += `${JSON.stringify(enumArray)}\n`;
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Enumerate demo completed');
+        }
+
+        function demonstrateCount() {
+            const output = document.getElementById('utilsOutput');
+            
+            let result = 'Count, All, and Any Operations:\n\n';
+            
+            const numbers = new Range(1, 10);
+            const evenNumbers = new Range(2, 10, 2);
+            const oddNumbers = new Range(1, 9, 2);
+            
+            // Count operations
+            result += `Count of numbers 1-10: ${IterableUtils.count(numbers)}\n`;
+            result += `Count of even numbers: ${IterableUtils.count(evenNumbers)}\n`;
+            result += `Count of odd numbers: ${IterableUtils.count(oddNumbers)}\n\n`;
+            
+            // All operations
+            result += 'All Operations:\n';
+            result += `All numbers > 0: ${IterableUtils.all(numbers, x => x > 0)}\n`;
+            result += `All numbers > 5: ${IterableUtils.all(numbers, x => x > 5)}\n`;
+            result += `All even numbers are even: ${IterableUtils.all(evenNumbers, x => x % 2 === 0)}\n\n`;
+            
+            // Any operations
+            result += 'Any Operations:\n';
+            result += `Any number > 5: ${IterableUtils.any(numbers, x => x > 5)}\n`;
+            result += `Any number > 10: ${IterableUtils.any(numbers, x => x > 10)}\n`;
+            result += `Any even number is odd: ${IterableUtils.any(evenNumbers, x => x % 2 === 1)}\n`;
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Count/All/Any demo completed');
+        }
+
+        function demonstrateZip() {
+            const output = document.getElementById('utilsOutput');
+            
+            let result = 'Zip Operations:\n\n';
+            
+            const numbers = new Range(1, 5);
+            const letters = new Collection(['A', 'B', 'C', 'D', 'E']);
+            const colors = new Collection(['Red', 'Green', 'Blue', 'Yellow', 'Purple']);
+            
+            result += `Numbers: [${numbers.toArray().join(', ')}]\n`;
+            result += `Letters: [${letters.toArray().join(', ')}]\n`;
+            result += `Colors: [${colors.toArray().join(', ')}]\n\n`;
+            
+            // Zip two iterables
+            result += 'Zip Numbers and Letters:\n';
+            for (const [num, letter] of IterableUtils.zip(numbers, letters)) {
+                result += `${num}-${letter} `;
+            }
+            result += '\n\n';
+            
+            // Zip three iterables
+            result += 'Zip Numbers, Letters, and Colors:\n';
+            for (const [num, letter, color] of IterableUtils.zip(numbers, letters, colors)) {
+                result += `${num}-${letter}-${color}\n`;
+            }
+            result += '\n';
+            
+            // Convert to array
+            const zipped = [...IterableUtils.zip(numbers, letters)];
+            result += `Zipped as array: ${JSON.stringify(zipped)}\n`;
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Zip demo completed');
+        }
+
+        function demonstrateChain() {
+            const output = document.getElementById('utilsOutput');
+            
+            let result = 'Chain Operations:\n\n';
+            
+            const range1 = new Range(1, 3);
+            const range2 = new Range(10, 12);
+            const collection = new Collection(['A', 'B', 'C']);
+            
+            result += `Range 1: [${range1.toArray().join(', ')}]\n`;
+            result += `Range 2: [${range2.toArray().join(', ')}]\n`;
+            result += `Collection: [${collection.toArray().join(', ')}]\n\n`;
+            
+            // Chain ranges
+            result += 'Chain Ranges:\n';
+            const chainedRanges = IterableUtils.chain(range1, range2);
+            result += `[${[...chainedRanges].join(', ')}]\n\n`;
+            
+            // Chain all three
+            result += 'Chain All Three:\n';
+            const chainedAll = IterableUtils.chain(range1, collection, range2);
+            result += `[${[...chainedAll].join(', ')}]\n\n`;
+            
+            // For...of iteration
+            result += 'For...of iteration:\n';
+            for (const item of IterableUtils.chain(range1, collection, range2)) {
+                result += `${item} `;
+            }
+            result += '\n';
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Chain demo completed');
+        }
+
+        function demonstrateComplexChaining() {
+            const output = document.getElementById('utilsOutput');
+            
+            let result = 'Complex Chaining Operations:\n\n';
+            
+            // Create test data
+            const numbers = new Range(1, 20);
+            const fibonacci = new FibonacciSequence(10);
+            
+            result += 'Complex Operation Chain:\n';
+            result += '1. Take first 10 numbers from range\n';
+            result += '2. Chain with Fibonacci sequence\n';
+            result += '3. Take first 15 from chained result\n';
+            result += '4. Enumerate the result\n\n';
+            
+            // Step by step
+            const first10 = IterableUtils.take(numbers, 10);
+            result += `Step 1 - First 10 numbers: [${first10.join(', ')}]\n`;
+            
+            const fibArray = fibonacci.toArray();
+            result += `Fibonacci sequence: [${fibArray.join(', ')}]\n`;
+            
+            const chained = IterableUtils.chain(new Range(1, 10), fibonacci);
+            const first15 = IterableUtils.take(chained, 15);
+            result += `Step 3 - First 15 from chain: [${first15.join(', ')}]\n\n`;
+            
+            const enumerated = IterableUtils.enumerate(IterableUtils.take(chained, 8));
+            result += 'Step 4 - Enumerated result:\n';
+            for (const [index, value] of enumerated) {
+                result += `${index}: ${value}\n`;
+            }
+            
+            // Complex filter and analysis
+            result += '\nComplex Analysis:\n';
+            const complexChain = IterableUtils.chain(
+                new Range(1, 20).filter(x => x % 2 === 0),
+                new FibonacciSequence(8),
+                new Collection([100, 200, 300])
+            );
+            
+            const complexResult = [...complexChain];
+            result += `Complex chain result: [${complexResult.join(', ')}]\n`;
+            
+            const evenCount = complexResult.filter(x => x % 2 === 0).length;
+            const sum = complexResult.reduce((a, b) => a + b, 0);
+            
+            result += `Even numbers count: ${evenCount}\n`;
+            result += `Sum of all values: ${sum}\n`;
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Complex chaining demo completed');
+        }
+
+        function demonstratePerformance() {
+            const output = document.getElementById('utilsOutput');
+            
+            let result = 'Performance Testing:\n\n';
+            
+            // Test large range operations
+            const largeRange = new Range(1, 10000);
+            
+            // Test 1: Array conversion
+            console.time('Array conversion');
+            const array = largeRange.toArray();
+            console.timeEnd('Array conversion');
+            
+            // Test 2: Iteration
+            console.time('For...of iteration');
+            let sum = 0;
+            for (const value of largeRange) {
+                sum += value;
+            }
+            console.timeEnd('For...of iteration');
+            
+            // Test 3: Chain operations
+            console.time('Chain operations');
+            const chained = IterableUtils.chain(
+                new Range(1, 1000),
+                new Range(2000, 3000),
+                new Range(5000, 6000)
+            );
+            const chainedArray = [...chained];
+            console.timeEnd('Chain operations');
+            
+            // Test 4: Complex operations
+            console.time('Complex operations');
+            const result1 = IterableUtils.take(
+                IterableUtils.enumerate(
+                    IterableUtils.chain(
+                        new Range(1, 100).filter(x => x % 2 === 0),
+                        new Range(200, 300)
+                    )
+                ),
+                50
+            );
+            console.timeEnd('Complex operations');
+            
+            result += `Large range (1-10000) array conversion: ${array.length} items\n`;
+            result += `Sum of all values: ${sum}\n`;
+            result += `Chained arrays total length: ${chainedArray.length}\n`;
+            result += `Complex operation result length: ${result1.length}\n\n`;
+            
+            result += 'Memory Usage (approximate):\n';
+            result += `Range object: Minimal (lazy evaluation)\n`;
+            result += `Array conversion: ${(array.length * 8)} bytes\n`;
+            result += `Chained result: ${(chainedArray.length * 8)} bytes\n\n`;
+            
+            result += 'Check console for actual timing results.\n';
+            result += 'Iterables use lazy evaluation for memory efficiency!';
+            
+            output.textContent = result;
+            output.className = 'demo-output success';
+            console.log('Performance testing completed');
+        }
+
+        // Run all demos
+        function runAllDemos() {
+            console.log('Running all demos...');
+            
+            // Set default values
+            document.getElementById('rangeStart').value = '1';
+            document.getElementById('rangeEnd').value = '10';
+            document.getElementById('rangeStep').value = '2';
+            document.getElementById('fibLimit').value = '8';
+            document.getElementById('matrixRows').value = '3';
+            document.getElementById('matrixCols').value = '3';
+            
+            // Run demos with delays
+            setTimeout(() => demonstrateRange(), 100);
+            setTimeout(() => rangeOperations(), 200);
+            
+            // Add items to collection
+            setTimeout(() => {
+                ['Demo', 'Test', 'Example', 'Sample'].forEach(item => {
+                    document.getElementById('collectionItem').value = item;
+                    addToCollection();
+                });
+                collectionOperations();
+            }, 300);
+            
+            setTimeout(() => createMatrix(), 400);
+            setTimeout(() => fillMatrix(), 500);
+            setTimeout(() => generateFibonacci(), 600);
+            setTimeout(() => fibonacciOperations(), 700);
+            
+            // Add tree nodes
+            setTimeout(() => {
+                ['Child1', 'Child2', 'Child3'].forEach(item => {
+                    document.getElementById('treeNode').value = item;
+                    addTreeNode();
+                });
+                traverseTree();
+            }, 800);
+            
+            setTimeout(() => demonstrateTake(), 900);
+            setTimeout(() => demonstrateZip(), 1000);
+            setTimeout(() => demonstrateChain(), 1100);
+            
+            console.log('All demos completed!');
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Custom Iterable Objects Demo loaded by Kheni Urval (24CE055)');
+            
+            // Initialize tree display
+            updateTreeDisplay();
+            
+            // Initialize collection display
+            updateCollectionDisplay();
+            
+            // Add sample data for immediate demonstration
+            setTimeout(() => {
+                demonstrateRange();
+                generateFibonacci();
+            }, 500);
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'r':
+                        e.preventDefault();
+                        runAllDemos();
+                        break;
+                    case 'l':
+                        e.preventDefault();
+                        clearConsole();
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
