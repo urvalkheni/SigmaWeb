@@ -3,16 +3,16 @@
 
 // Sample sales dataset
 const salesData = [
-    { id: 1, salesperson: 'John Smith', region: 'North', product: 'Laptop', amount: 1200, date: '2025-01-15' },
-    { id: 2, salesperson: 'Sarah Johnson', region: 'South', product: 'Phone', amount: 800, date: '2025-01-16' },
-    { id: 3, salesperson: 'Mike Wilson', region: 'East', product: 'Tablet', amount: 600, date: '2025-01-17' },
-    { id: 4, salesperson: 'Emily Davis', region: 'West', product: 'Laptop', amount: 1500, date: '2025-01-18' },
-    { id: 5, salesperson: 'John Smith', region: 'North', product: 'Phone', amount: 700, date: '2025-01-19' },
-    { id: 6, salesperson: 'Sarah Johnson', region: 'South', product: 'Tablet', amount: 550, date: '2025-01-20' },
-    { id: 7, salesperson: 'Mike Wilson', region: 'East', product: 'Laptop', amount: 1300, date: '2025-01-21' },
-    { id: 8, salesperson: 'Emily Davis', region: 'West', product: 'Phone', amount: 900, date: '2025-01-22' },
-    { id: 9, salesperson: 'David Brown', region: 'North', product: 'Tablet', amount: 650, date: '2025-01-23' },
-    { id: 10, salesperson: 'Lisa Garcia', region: 'South', product: 'Laptop', amount: 1400, date: '2025-01-24' }
+    { id: 1, salesperson: 'Urval Kheni', region: 'North', product: 'Laptop', amount: 1200, date: '2025-01-15' },
+    { id: 2, salesperson: 'Disu Makadiya', region: 'South', product: 'Phone', amount: 800, date: '2025-01-16' },
+    { id: 3, salesperson: 'Heet Mehta', region: 'East', product: 'Tablet', amount: 600, date: '2025-01-17' },
+    { id: 4, salesperson: 'Krish Patel', region: 'West', product: 'Laptop', amount: 1500, date: '2025-01-18' },
+    { id: 5, salesperson: 'Pushti Kansara', region: 'North', product: 'Phone', amount: 700, date: '2025-01-19' },
+    { id: 6, salesperson: 'Om Mistry', region: 'South', product: 'Tablet', amount: 550, date: '2025-01-20' },
+    { id: 7, salesperson: 'Raju Rastogi', region: 'East', product: 'Laptop', amount: 1300, date: '2025-01-21' },
+    { id: 8, salesperson: 'Farhan Khan', region: 'West', product: 'Phone', amount: 900, date: '2025-01-22' },
+    { id: 9, salesperson: 'Rajesh Pandit', region: 'North', product: 'Tablet', amount: 650, date: '2025-01-23' },
+    { id: 10, salesperson: 'Narendra Modi', region: 'South', product: 'Laptop', amount: 1400, date: '2025-01-24' }
 ];
 
 let currentData = [...salesData];
